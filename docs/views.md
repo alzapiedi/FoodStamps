@@ -1,4 +1,4 @@
-# View Wireframes
+<!-- # View Wireframes
 
 ## New User
 ![new-user]
@@ -23,4 +23,4 @@
 [notes]: ./wireframes/root_notes.png
 [notebooks]: ./wireframes/root_notebooks.png
 [notebook-form]: ./wireframes/notebook_form.png
-[component-heirarchy]: ./wireframes/component_heirarchy.png
+[component-heirarchy]: ./wireframes/component_heirarchy.png -->
