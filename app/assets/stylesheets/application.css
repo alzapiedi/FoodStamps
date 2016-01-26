@@ -18,7 +18,7 @@
  html, body, header, nav, h1, a, ul, li,
  strong, main, section, img, div, h2, p,
  form, fieldset, label, input, textarea,
- button, article, footer, small {
+ button, article, footer, span, small {
    margin: 0;
    padding: 0;
    border: 0;
@@ -136,7 +136,7 @@
 .header-search {
   display: block;
   float: left;
-  padding: 30px 100px;
+  padding: 30px 0 30px 70px;
 }
 
 .header-search input {
@@ -150,6 +150,13 @@
   padding: 5px
 }
 
+.header-post {
+  width: 20px;
+  display: block;
+  float: left;
+  padding: 30px 20px;
+}
+
 .header-profile {
   font-family: Helvetica;
   font-size: 12px;
@@ -160,9 +167,71 @@
   float: right;
 }
 
+.header-profile form {
+  display: inline;
+}
+
 .header-profile button {
   color: #fff;
   padding: 5px 10px;
   background: #4090db;
+}
+
+.header-profile button:hover {
+  cursor: pointer;
+}
+
+.header-profile i {
   display: inline;
+  margin-right: 50px;
+}
+
+.stamp-form {
+  position: absolute;
+  font-family: Helvetica;
+  font-size: 14px;
+  background: #fff;
+  top: 300px;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  display: block;
+  width: 500px;
+  padding: 25px;
+  border: 1px solid #eee;
+}
+
+.stamp-form h1 {
+  font-size: 28px;
+  color: #125688;
+  text-align: center;
+  font-weight: bold;
+}
+
+.stamp-form input, textarea {
+  display: block;
+  width: 350px;
+  padding: 5px;
+  font-size: 14px;
+  margin: 20px auto;
+  border: 1px solid #eee;
+}
+
+.stamp-form textarea {
+  height: 120px;
+}
+
+.stamp-form button {
+  display: block;
+  margin: 20px auto;
+  padding: 5px;
+  border-radius: 2px;
+  background: #4090db;
+  color: #fff;
+  text-align: center;
+  width: 350px;
+}
+
+.stamp-form button:hover {
+  background: #2d6599;
+  cursor: pointer;
 }

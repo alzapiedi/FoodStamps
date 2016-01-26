@@ -1,0 +1,37 @@
+{
+  "name": "FoodStamps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "dependencies": {
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "babel-preset-react": "^6.3.13",
+    "flux": "^2.1.1",
+    "history": "^1.17.0",
+    "react": "^0.14.6",
+    "react-addons-linked-state-mixin": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "react-router": "^1.0.3",
+    "webpack": "^1.12.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alzapiedi/FoodStamps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alzapiedi/FoodStamps/issues"
+  },
+  "homepage": "https://github.com/alzapiedi/FoodStamps#readme"
+}
