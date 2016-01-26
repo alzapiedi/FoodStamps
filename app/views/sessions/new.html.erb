@@ -1,0 +1,19 @@
+<div class='user-form'>
+  <div class='form-logo'>
+    FoodStamps
+  </div>
+  <form action='<%= session_url %>' method='POST'>
+    <%= auth_token %>
+    <input type='text' name='user[username]' placeholder="Username"/>
+    <input type='password' name='user[password]' placeholder="Password"/>
+    <button>Log In</button>
+  </form>
+  <div class='errors'>
+    <% if flash[:errors] %>
+      <%= flash[:errors] %>
+    <% end %>
+  </div>
+  <div class='form-message'>
+    Don't have an account? <a href='<%= new_user_url %>'>Click here</a> to sign up.
+  </div>
+</div>

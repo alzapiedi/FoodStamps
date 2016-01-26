@@ -1,13 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SampleProjectProposal</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title>FoodStamps</title>
+  <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lobster+Two:400italic' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if logged_in? %>
+    <header class='header'>
+      <nav class='header-nav group'>
+        <h1 class="header-logo">
+          <a href="#">FoodStamps</a>
+        </h1>
 
+        <div class='header-search'>
+          <input type='text' placeholder="Search">
+        </div>
+
+        <div class='header-profile'>
+          <a href='#'><%= current_user.username %></a>
+          <form action='<%= session_url %>' method='POST'>
+            <%= auth_token %>
+            <input type="hidden" name="_method" value="DELETE">
+            <button>Log Out</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+  <% end %>
 <%= yield %>
 
 </body>

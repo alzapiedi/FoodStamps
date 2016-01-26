@@ -13,3 +13,156 @@
  *= require_tree .
  *= require_self
  */
+
+
+ html, body, header, nav, h1, a, ul, li,
+ strong, main, section, img, div, h2, p,
+ form, fieldset, label, input, textarea,
+ button, article, footer, small {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   outline: 0;
+   text-align: inherit;
+   text-decoration: inherit;
+   vertical-align: inherit;
+   box-sizing: inherit;
+   font: inherit;
+   color: inherit;
+   background: transparent;
+ }
+
+ .group:after {
+   content: "";
+   clear: both;
+   display: block;
+ }
+
+ body {
+   background: #fafafa;
+ }
+
+.user-form {
+  position: absolute;
+  font-family: Helvetica;
+  font-size: 14px;
+  background: #fff;
+  top: 40%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  display: block;
+  width: 375px;
+  height: 275px;
+  padding: 25px;
+  border: 1px solid #eee;
+}
+
+.form-logo {
+  font-size: 42px;
+  font-family: 'Lobster Two';
+  color: #2d6599;
+  text-align: center;
+}
+
+.user-form form {
+  margin-top: 30px;
+}
+
+.user-form input {
+  display: block;
+  width: 200px;
+  border: 1px solid #eee;
+  margin: 10px auto;;
+  padding: 5px 10px;
+}
+
+.user-form button {
+  display: block;
+  margin: 20px auto;
+  padding: 5px 10px;
+  border-radius: 2px;
+  background: #4090db;
+  color: #fff;
+  text-align: center;
+  width: 200px;
+}
+
+.user-form button:hover {
+  background: #2d6599;
+  cursor: pointer;
+}
+
+.errors {
+  color: red;
+  display: block;
+  width: 220px;
+  margin: 15px auto;
+}
+
+.form-message {
+  display: block;
+  font-size: 12px;
+  text-align: center;
+}
+
+.form-message a {
+  color: #2d6599;
+}
+
+.form-message a:hover {
+  cursor: pointer;
+}
+
+.header {
+  background: #fff;
+  display: block;
+}
+
+.header-nav {
+  display: block;
+  width: 600px;
+  margin: auto;
+}
+
+.header-logo {
+  font-family: 'Lobster Two';
+  font-size: 18px;
+  color: #2d6599;
+  display: block;
+  padding: 30px 20px;
+  float: left;
+}
+
+.header-search {
+  display: block;
+  float: left;
+  padding: 30px 100px;
+}
+
+.header-search input {
+  background: #fafafa;
+  border: 1px solid #eee;
+  font-family: Helvetica;
+  font-size: 14px;
+  width: 150px;
+  border-radius: 15px;
+  text-align: center;
+  padding: 5px
+}
+
+.header-profile {
+  font-family: Helvetica;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 30px 20px;
+  color: #125688;
+  display: inline;
+  float: right;
+}
+
+.header-profile button {
+  color: #fff;
+  padding: 5px 10px;
+  background: #4090db;
+  display: inline;
+}
