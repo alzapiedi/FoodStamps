@@ -2,10 +2,11 @@ var AppDispatcher = require('../dispatcher/dispatcher'),
     UserConstants = require('../constants/user');
 
 module.exports = {
-  addUser: function (user) {
+  addUser: function (user_id, stamps) {
     AppDispatcher.dispatch({
       actionType: UserConstants.ADD_USER,
-      user: user
+      user_id: user_id,
+      stamps: stamps
     });
   }
 };

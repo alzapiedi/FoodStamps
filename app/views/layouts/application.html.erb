@@ -4,6 +4,7 @@
   <title>FoodStamps</title>
   <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Lobster+Two:400italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
@@ -22,8 +23,8 @@
         </div>
 
         <div class='header-profile'>
-          <a href='#'><i class="fa fa-camera-retro fa-2x"></i></a>
-          <a href='#'><%= current_user.username %></a>
+          <a class='header-new' href='#/new'><i class="fa fa-camera-retro fa-2x"></i></a>
+          <a href='<%= "#/users/#{current_user.id}" %>'><%= current_user.username %></a>
           <form action='<%= session_url %>' method='POST'>
             <%= auth_token %>
             <input type="hidden" name="_method" value="DELETE">

@@ -30,3 +30,9 @@ s12 = Stamp.create(body: "Filet mignon", user_id: u4.id, image_url: "http://gran
 s13 = Stamp.create(body: "Apple pie", user_id: u5.id, image_url: "http://images.media-allrecipes.com/images/52912.jpg")
 s14 = Stamp.create(body: "Baked ziti", user_id: u5.id, image_url: "http://www.simplyrecipes.com/wp-content/uploads/2010/12/baked-ziti-horiz-640.jpg")
 s15 = Stamp.create(body: "The halal guys are the best", user_id: u5.id, image_url: "http://newyork.seriouseats.com/images/2012/10/20121002-halal-taste-test-famous-halal-52nd-platter.jpg")
+
+Follow.destroy_all
+Follow.create(followee_id: u2.id, follower_id: u1.id)
+Follow.create(followee_id: u3.id, follower_id: u1.id)
+Follow.create(followee_id: u4.id, follower_id: u1.id)
+Follow.create(followee_id: u5.id, follower_id: u1.id)

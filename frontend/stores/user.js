@@ -6,7 +6,7 @@ var Store = require('flux/utils').Store,
 
 UserStore.__onDispatch = function (payload) {
   if (payload.actionType === UserConstants.ADD_USER) {
-    _users[payload.user.id] = payload.user;
+    _users[payload.user_id] = payload.stamps;
     UserStore.__emitChange();
   }
 };

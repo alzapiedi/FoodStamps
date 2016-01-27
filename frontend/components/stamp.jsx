@@ -2,14 +2,26 @@ var React = require('react');
 
 module.exports = React.createClass({
   render: function () {
+    var stamp = this.props.stamp;
+    var ageInSeconds = (Date.now() - Date.parse(this.props.stamp.created_at)) / 1000;
+    var ages = [ageInSeconds, ageInSeconds/60, ageInSeconds/3600, ageInSeconds/86400, ageInSeconds/604800, ageInSeconds/31536000];
+    var timeUnit = {0: "s", 1: "m", 2: "h", 3: "d", 4: "w", 5: "y"};
+    var age;
+    for (var i = 5; i >= 0; i--) {
+      if (ages[i] > 1) {
+        age = Math.floor(ages[i]) + timeUnit[i];
+        break;
+      }
+    }
     return (
       <div className='stamp'>
-        <section className='stamp-head'>
-          {this.props.user}
+        <section className='stamp-head group'>
+          <a href={'#/users/' + stamp.user_id}>{stamp.username}</a>
+          <div className='stamp-age'>{age}</div>
         </section>
-        <img src={this.props.stamp.image_url}/>
+        <img src={stamp.image_url}/>
         <section className='stamp-body'>
-          {this.props.stamp.body}
+          <a href={'#/users/' + stamp.user_id}>{stamp.username}</a>{stamp.body}
         </section>
       </div>
     );

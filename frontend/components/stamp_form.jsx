@@ -5,17 +5,39 @@ var React = require('react'),
 module.exports = React.createClass({
   mixins: [LinkedState],
   getInitialState: function () {
-    return {body: "", image_url: ""};
+    return {body: "", imageFile: null, imageUrl: ""};
   },
-  handleSubmit: function () {
-    ApiUtil.createStamp(this.state);
+  handleSubmit: function (e) {
+    e.preventDefault();
+
+    var formData = new FormData();
+
+    formData.append("stamp[body]", this.state.body);
+    formData.append("stamp[image]", this.state.imageFile);
+
+    ApiUtil.createStamp(formData);
+  },
+  changeFile: function (e) {
+    var reader = new FileReader();
+    var file = e.currentTarget.files[0];
+
+    reader.onloadend = function () {
+      this.setState({imageFile: file, imageUrl: reader.result});
+    }.bind(this);
+
+    if (file) {
+      reader.readAsDataURL(file); // will trigger a load end event when it completes, and invoke reader.onloadend
+    } else {
+      this.setState({imageFile: null, imageUrl: ""});
+    }
   },
   render: function () {
     return (
       <div className='stamp-form'>
         <h1>Post a Stamp</h1>
         <form onSubmit={this.handleSubmit}>
-          <input placeholder={'Enter Image URL'} type='text' valueLink={this.linkState("image_url")}/>
+          <input placeholder={'Upload an Image'} type='file' onChange={this.changeFile}/>
+          <img className='preview-image' width={350} src={this.state.imageUrl}></img>
           <textarea placeholder={'Description'} valueLink={this.linkState("body")}/>
           <button>Post Stamp</button>
         </form>

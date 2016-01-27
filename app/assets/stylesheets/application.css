@@ -130,14 +130,15 @@
   font-size: 18px;
   color: #2d6599;
   display: block;
-  padding: 30px 20px;
+  padding: 30px 0;
   float: left;
 }
 
 .header-search {
   display: block;
   float: left;
-  padding: 30px 0 30px 70px;
+  padding: 30px 0;
+  margin-left: 120px;
 }
 
 .header-search input {
@@ -145,24 +146,27 @@
   border: 1px solid #eee;
   font-family: Helvetica;
   font-size: 14px;
-  width: 150px;
+  width: 180px;
   border-radius: 15px;
   text-align: center;
   padding: 5px
 }
 
-.header-post {
-  width: 20px;
+.header-new {
+  color: #125688;
   display: block;
   float: left;
-  padding: 30px 20px;
+}
+
+.header-new i {
+  display: block;
 }
 
 .header-profile {
-  font-family: Helvetica;
+  font-family: 'Montserrat';
   font-size: 12px;
   font-weight: bold;
-  padding: 30px 20px;
+  padding: 30px 0;
   color: #125688;
   display: inline;
   float: right;
@@ -184,17 +188,17 @@
 
 .header-profile i {
   display: inline;
-  margin-right: 50px;
+  margin-right: 20px;
 }
 
 .stamp-form {
   position: absolute;
-  font-family: Helvetica;
+  font-family: 'Montserrat';
   font-size: 14px;
   background: #fff;
-  top: 300px;
+  top: 100px;
   left: 50%;
-  transform: translateY(-50%) translateX(-50%);
+  transform: translateX(-50%);
   display: block;
   width: 500px;
   padding: 25px;
@@ -215,6 +219,12 @@
   font-size: 14px;
   margin: 20px auto;
   border: 1px solid #eee;
+}
+
+.stamp-form img {
+  width: 350px;
+  display: block;
+  margin: auto;
 }
 
 .stamp-form textarea {
@@ -240,19 +250,32 @@
 .stamp-list {
   display: block;
   width: 600px;
-  font-family: Helvetica;
-  color: #125688;
+  font-family: 'Montserrat';
   margin: auto;
 }
 
 .stamp {
   display: block;
   margin: 60px 0;
+  font-size: 14px;
   border: 1px solid #eee;
+}
+
+.stamp a {
+  color: #125688;
+  font-family: 'Montserrat';
+  padding-right: 10px;
 }
 
 .stamp-head {
   padding: 20px;
+}
+
+.stamp-age {
+  float: right;
+  font-family: Helvetica;
+  font-size: 15px;
+  color: #a5a7aa;
 }
 
 .stamp img {
@@ -261,5 +284,14 @@
 }
 
 .stamp-body {
+  color: black;
+  font-family: Helvetica;
+  font-size: 15px;
   padding: 20px;
+}
+
+.stamp-body a {
+  color: #125688;
+  font-family: 'Montserrat';
+  font-size: 14px;
 }

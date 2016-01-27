@@ -3,6 +3,7 @@ var React = require('react'),
     Router = require('react-router').Router,
     Route = require('react-router').Route,
     IndexRoute = require('react-router').IndexRoute,
+    Feed = require('./components/feed'),
     StampForm = require('./components/stamp_form'),
     UserShow = require('./components/user_show');
 
@@ -15,8 +16,9 @@ var App = React.createClass({
 var routes = (
   <Router>
     <Route path='/' component={App}>
-      <IndexRoute component={StampForm}/>
+      <IndexRoute component={Feed}/>
       <Route path='users/:id' component={UserShow}/>
+      <Route path='new' component={StampForm}/>
     </Route>
   </Router>
 );

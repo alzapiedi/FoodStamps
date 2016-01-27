@@ -1,11 +1,14 @@
-var UserActions = require('../actions/user');
+var UserActions = require('../actions/user'),
+    FeedActions = require('../actions/feed');
 module.exports = {
-  createStamp: function (stamp) {
+  createStamp: function (formData) {
     $.ajax({
       type: "POST",
       url: "api/stamps",
+      processData: false,
+      contentType: false,
       dataType: "json",
-      data: {stamp: stamp},
+      data: formData,
       success: function (stamp) {
 
       }
@@ -16,8 +19,18 @@ module.exports = {
       type: "GET",
       url: "api/users/" + id,
       dataType: "json",
-      success: function (user) {
-        UserActions.addUser(user);
+      success: function (stamps) {
+        UserActions.addUser(id, stamps);
+      }
+    });
+  },
+  fetchFeed: function () {
+    $.ajax({
+      type: "GET",
+      url: "api/feed",
+      dataType: "json",
+      success: function (feed) {
+        FeedActions.updateFeed(feed);
       }
     });
   }

@@ -10,7 +10,7 @@
   </form>
   <div class='errors'>
     <% if flash[:errors] %>
-      <%= flash[:errors] %>
+      <%= flash[:errors].join(", ") %>
     <% end %>
   </div>
   <div class='form-message'>
