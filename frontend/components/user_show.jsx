@@ -1,6 +1,7 @@
 var React = require('react'),
     UserStore = require('../stores/user'),
-    ApiUtil = require('../util/api_util');
+    ApiUtil = require('../util/api_util'),
+    StampList = require('./stamp_list');
 
 module.exports = React.createClass({
   getInitialState: function () {
@@ -15,6 +16,6 @@ module.exports = React.createClass({
   },
   render: function () {
     if (!this.state.user) { return <div></div>; }
-    return <div>{this.state.user.username}</div>;
+      return <StampList user={this.state.user} />;
   }
 });

@@ -116,6 +116,7 @@
 .header {
   background: #fff;
   display: block;
+  border-bottom: 1px solid #eee;
 }
 
 .header-nav {
@@ -234,4 +235,31 @@
 .stamp-form button:hover {
   background: #2d6599;
   cursor: pointer;
+}
+
+.stamp-list {
+  display: block;
+  width: 600px;
+  font-family: Helvetica;
+  color: #125688;
+  margin: auto;
+}
+
+.stamp {
+  display: block;
+  margin: 60px 0;
+  border: 1px solid #eee;
+}
+
+.stamp-head {
+  padding: 20px;
+}
+
+.stamp img {
+  display: block;
+  width: 100%;
+}
+
+.stamp-body {
+  padding: 20px;
 }
