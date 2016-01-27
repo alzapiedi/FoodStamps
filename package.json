@@ -22,6 +22,14 @@
     "react-dom": "^0.14.2",
     "react-router": "^1.0.0-rc4"
   },
+  "scripts": {
+  "postinstall": "./node_modules/.bin/webpack",
+  "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+   "node": "4.1.1",
+   "npm": "2.1.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alzapiedi/FoodStamps.git"
