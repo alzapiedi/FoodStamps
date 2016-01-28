@@ -339,10 +339,16 @@
 
 .profile-picture {
   width: 150px;
+  height: 150px;
   margin-right: 30px;
   border-radius: 50%;
+  border: 1px solid #cccfd0;
   overflow: hidden;
   float: left;
+}
+
+.profile-picture img {
+  height: 100%;
 }
 
 .user-buttons {
@@ -419,9 +425,15 @@
 
 .thumb {
   width: 25px;
+  height: 25px;
   border-radius: 50%;
+  border: 1px solid #cccfd0;
   overflow: hidden;
   float:left;
+}
+
+.thumb img {
+  height: 100%;
 }
 
 
