@@ -24,7 +24,7 @@ s6 = Stamp.create(body: "Pork tenderloin", user_id: u2.id, image: File.open(asse
 s7 = Stamp.create(body: "Chicken and waffles", user_id: u3.id, image: File.open(asset_path("chicken-and-waffles-3-1024x682.jpg")))
 s8 = Stamp.create(body: "Will you just look at this sandwich", user_id: u3.id, image: File.open(asset_path("large_7-24dining.jpg")))
 s9 = Stamp.create(body: "Best pizza ever!", user_id: u3.id, image: File.open(asset_path("pizza-wallpaper-199-248-hd-wallpapers.jpg")))
-body: "Amazing cookies", user_id: u4.id, image: File.open(asset_path("2ea0aafc-2942-4134-947f-847c043411ae.jpg")))
+s10 = Stamp.create(body: "Amazing cookies", user_id: u4.id, image: File.open(asset_path("2ea0aafc-2942-4134-947f-847c043411ae.jpg")))
 s11 = Stamp.create(body: "Pasta carbonara", user_id: u4.id, image: File.open(asset_path("Carbonara.jpg")))
 s12 = Stamp.create(body: "Filet mignon", user_id: u4.id, image: File.open(asset_path("fm_1.jpg")))
 s13 = Stamp.create(body: "Apple pie", user_id: u5.id, image: File.open(asset_path("52912.jpg")))
