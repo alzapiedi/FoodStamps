@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true}
   validates :username, length: { minimum: 4, maximum: 15 }
   after_initialize :ensure_session_token
+  after_save :follow_all
   has_many :in_follows, class_name: "Follow", foreign_key: "followee_id"
   has_many :out_follows, class_name: "Follow", foreign_key: "follower_id"
   has_many :followers, through: :in_follows, source: :follower
@@ -47,5 +48,12 @@ class User < ActiveRecord::Base
   private
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64
+  end
+
+  def follow_all
+    ids = User.all.map { |user| user.id }
+    ids.each do |id|
+      Follow.create(follower_id: self.id, followee_id: id)
+    end
   end
 end
