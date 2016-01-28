@@ -47,7 +47,7 @@ module.exports = React.createClass({
         </div>
         <div className='user-info group'>
           {button}
-          <div className='user-info-stats'>
+          <div className='user-info-stats group'>
             <div className='user-stat'>
               <span className='user-dark'>{user.post_count}</span>
               <span> posts</span>
