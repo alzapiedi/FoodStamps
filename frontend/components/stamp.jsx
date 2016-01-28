@@ -16,6 +16,9 @@ module.exports = React.createClass({
     return (
       <div className='stamp'>
         <section className='stamp-head group'>
+          <div className='thumb'>
+            <img src={this.props.stamp.thumb_avatar}/>
+          </div>
           <a href={'#/users/' + stamp.user_id}>{stamp.username}</a>
           <div className='stamp-age'>{age}</div>
         </section>

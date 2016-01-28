@@ -8,11 +8,11 @@
 
 
 User.destroy_all
-u1 = User.create(username: "nick", password: "password")
-u2 = User.create(username: "johnny_rocket", password: "password")
-u3 = User.create(username: "crabcakes17", password: "password")
-u4 = User.create(username: "poultry_lover77", password: "password")
-u5 = User.create(username: "slimjim1396", password: "password")
+u1 = User.create(username: "nick", password: "password", avatar: File.open("app/assets/images/nick-alzapiedi.jpg"))
+u2 = User.create(username: "johnny_rocket", password: "password", avatar: File.open("app/assets/images/face1.jpg"))
+u3 = User.create(username: "crabcakes17", password: "password", avatar: File.open("app/assets/images/barack-obama.png"))
+u4 = User.create(username: "poultry_lover77", password: "password", avatar: File.open("app/assets/images/unnamed.png"))
+u5 = User.create(username: "slimjim1396", password: "password", avatar: File.open("app/assets/images/crazy.jpg"))
 
 Stamp.destroy_all
 s3 = Stamp.create(body: "Shrimp fried rice", user_id: u1.id, image: File.open("app/assets/images/DSC_6079.JPG"))

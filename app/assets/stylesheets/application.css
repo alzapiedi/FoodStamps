@@ -32,6 +32,12 @@
    background: transparent;
  }
 
+ img {
+   display: block;
+   width: 100%;
+   height: auto;
+ }
+
  .group:after {
    content: "";
    clear: both;
@@ -261,6 +267,12 @@
   margin: auto;
 }
 
+.stamp-list-none {
+  text-align: center;
+  margin-top: 25px;
+  font-family: 'Montserrat';
+}
+
 .stamp {
   display: block;
   margin: 60px 0;
@@ -275,14 +287,26 @@
 }
 
 .stamp-head {
-  padding: 20px;
+  padding: 15px;
+  position: relative;
+}
+
+.stamp-head a {
+  padding: 5px 0;
+  margin-left: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .stamp-age {
-  float: right;
   font-family: Helvetica;
   font-size: 15px;
   color: #a5a7aa;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
 }
 
 .stamp img {
@@ -303,19 +327,38 @@
   font-size: 14px;
 }
 
-.user-info {
+.user-profile {
   box-sizing: border-box;
-  padding-left: 180px;
+  /*padding-left: 180px;*/
   font-family: Helvetica;
   display: block;
   width: 600px;
   color: #4b4f54;
-  margin: auto;
+  margin: 50px auto 20px auto;
 }
 
-.user-info-head {
+.profile-picture {
+  width: 150px;
+  margin-right: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  float: left;
+}
+
+.user-buttons {
   display: block;
-  margin: 40px 0;
+  float: left;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  display: block;
+  float: left;
+}
+
+.user-info-edit {
+  display: block;
+  float: left;
 }
 
 .user-info h1 {
@@ -324,6 +367,12 @@
   font-family: Helvetica;
   font-weight: lighter;
   font-size: 34px;
+  margin-right: 20px;
+}
+
+.user-info-stats {
+  display: block;
+  margin-left: 3px;
 }
 
 .user-stat {
@@ -341,14 +390,40 @@
   float: left;
   border-radius: 3px;
   background: #66bd2b;
+  border: 1px solid #66bd2b;
   color: #fff;
   font-size: 13px;
   text-transform: uppercase;
   padding: 5px 10px;
-  margin: 10px 0 10px 20px;
+  margin-top: 7px;
+  cursor: pointer;
+}
+
+.user-info a {
+  display: block;
+  float: left;
+  border-radius: 3px;
+  border: 1px solid #818488;
+  color: #818488;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  margin-right: 20px;
+  margin-top: 7px;
   cursor: pointer;
 }
 
 .user-info button:disabled {
   opacity: 0.5;
 }
+
+.thumb {
+  width: 25px;
+  border-radius: 50%;
+  overflow: hidden;
+  float:left;
+}
+
+
+/*BORDER RADIUS 50%
+OVERFLOW HIDDEN*/

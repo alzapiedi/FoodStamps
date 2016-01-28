@@ -1,5 +1,5 @@
 var React = require('react'),
-    ApiUtil = require('../util/api_util');
+    FollowToggle = require('./follow_toggle');
 
 
 // this.props.user
@@ -7,42 +7,59 @@ var React = require('react'),
 //  { username, follows (boolean), post_count, followers_count, following_count, me, stamps}
 
 module.exports = React.createClass({
-  getInitialState: function () {
-    return {disabled: false};
+  /////////////////////////////////////////////DELETE THIS CRAP!!!///////////
+  logOut: function () {
+    $.ajax({
+      type: "DELETE",
+      url: "session/",
+      success: function () {
+        window.location.reload();
+      },
+      error: function () {
+        window.location.reload();
+      }
+    });
   },
-  toggleFollow: function () {
-    this.setState({disabled: true});
-    if (this.props.user.follows) {
-      ApiUtil.unfollow(this.props.user.id, this.enableButton);
-    } else {
-      ApiUtil.follow(this.props.user.id, this.enableButton);
-    }
-  },
-  enableButton: function () {
-    this.setState({disabled: false});
-  },
+  ///////////////////////////////////////////////////////////////////////
   render: function () {
     var user = this.props.user;
-    var disabled = this.state.disabled;
-    var btnText = user.follows ? "Unfollow" : "Follow";
-    return (
-      <div className='user-info'>
-        <div className='user-info-head group'>
+    var button;
+    if (user.me) {
+      button = (
+        <div className='user-buttons group'>
           <h1>{user.username}</h1>
-          <button disabled={disabled} onClick={this.toggleFollow}>{btnText}</button>
+          <a className='user-info-edit' href='#/edit'>Edit Profile</a>
+          <button onClick={this.logOut}>Log Out</button>
         </div>
-        <div className='user-info-stats'>
-          <div className='user-stat'>
-            <span className='user-dark'>{user.post_count}</span>
-            <span> posts</span>
-          </div>
-          <div className='user-stat'>
-            <span className='user-dark'>{user.followers_count}</span>
-            <span> followers</span>
-          </div>
-          <div className='user-stat'>
-            <span className='user-dark'>{user.following_count}</span>
-            <span> following</span>
+      );
+    } else {
+      button = (
+        <div className='user-buttons group'>
+          <h1>{user.username}</h1>
+          <FollowToggle user={user}/>
+        </div>
+      );
+    }
+    return (
+      <div className='user-profile group'>
+        <div className='profile-picture'>
+          <img src={user.avatar}/>
+        </div>
+        <div className='user-info group'>
+          {button}
+          <div className='user-info-stats'>
+            <div className='user-stat'>
+              <span className='user-dark'>{user.post_count}</span>
+              <span> posts</span>
+            </div>
+            <div className='user-stat'>
+              <span className='user-dark'>{user.followers_count}</span>
+              <span> followers</span>
+            </div>
+            <div className='user-stat'>
+              <span className='user-dark'>{user.following_count}</span>
+              <span> following</span>
+            </div>
           </div>
         </div>
       </div>

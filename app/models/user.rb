@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :followers, through: :in_follows, source: :follower
   has_many :followees, through: :out_follows, source: :followee
   has_many :stamps, dependent: :destroy
+  has_attached_file :avatar, styles: { medium: "150x150>", thumb: "25x25>" }, default_url: ":style/missing.jpg"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   def password=(password)
     @password = password
