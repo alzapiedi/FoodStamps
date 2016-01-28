@@ -170,6 +170,7 @@
   color: #125688;
   display: inline;
   float: right;
+  position: relative;
 }
 
 .header-profile form {
@@ -189,6 +190,12 @@
 .header-profile i {
   display: inline;
   margin-right: 20px;
+}
+
+.header-profile-link {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .stamp-form {
@@ -294,4 +301,54 @@
   color: #125688;
   font-family: 'Montserrat';
   font-size: 14px;
+}
+
+.user-info {
+  box-sizing: border-box;
+  padding-left: 180px;
+  font-family: Helvetica;
+  display: block;
+  width: 600px;
+  color: #4b4f54;
+  margin: auto;
+}
+
+.user-info-head {
+  display: block;
+  margin: 40px 0;
+}
+
+.user-info h1 {
+  display: block;
+  float: left;
+  font-family: Helvetica;
+  font-weight: lighter;
+  font-size: 34px;
+}
+
+.user-stat {
+  display: inline;
+  margin-right: 20px;
+}
+
+.user-dark {
+  color: #34373b;
+  font-weight: bold;
+}
+
+.user-info button {
+  display: block;
+  float: left;
+  border-radius: 3px;
+  background: #66bd2b;
+  color: #fff;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  margin: 10px 0 10px 20px;
+  cursor: pointer;
+}
+
+.user-info button:disabled {
+  opacity: 0.5;
 }

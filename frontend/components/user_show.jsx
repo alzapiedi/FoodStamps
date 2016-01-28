@@ -1,6 +1,7 @@
 var React = require('react'),
     UserStore = require('../stores/user'),
     ApiUtil = require('../util/api_util'),
+    UserInfo = require('./user_info'),
     StampList = require('./stamp_list');
 
 module.exports = React.createClass({
@@ -25,6 +26,12 @@ module.exports = React.createClass({
   },
   render: function () {
     if (!this.state.user) { return <div></div>; }
-      return <StampList stamps={this.state.user.stamps} />;
+      var user = this.state.user;
+      return (
+        <div>
+          <UserInfo user={user}/>
+          <StampList stamps={user.stamps}/>
+        </div>
+      );
   }
 });

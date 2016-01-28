@@ -19,8 +19,8 @@ module.exports = {
       type: "GET",
       url: "api/users/" + id,
       dataType: "json",
-      success: function (stamps) {
-        UserActions.addUser(id, stamps);
+      success: function (user) {
+        UserActions.addUser(id, user);
       }
     });
   },
@@ -31,6 +31,26 @@ module.exports = {
       dataType: "json",
       success: function (feed) {
         FeedActions.updateFeed(feed);
+      }
+    });
+  },
+  follow: function (id, callback) {
+    $.ajax({
+      type: "POST",
+      url: "api/users/" + id + "/follow",
+      success: function (follow) {
+        UserActions.follow(follow);
+        callback && callback();
+      }
+    });
+  },
+  unfollow: function (id, callback) {
+    $.ajax({
+      type: "DELETE",
+      url: "api/users/" + id + "/follow",
+      success: function (follow) {
+        UserActions.unfollow(follow);
+        callback && callback();
       }
     });
   }

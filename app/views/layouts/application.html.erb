@@ -24,12 +24,12 @@
 
         <div class='header-profile'>
           <a class='header-new' href='#/new'><i class="fa fa-camera-retro fa-2x"></i></a>
-          <a href='<%= "#/users/#{current_user.id}" %>'><%= current_user.username %></a>
-          <form action='<%= session_url %>' method='POST'>
+          <a class='header-profile-link' href='<%= "#/users/#{current_user.id}" %>'><%= current_user.username %></a>
+          <!-- <form action='<%= session_url %>' method='POST'>
             <%= auth_token %>
             <input type="hidden" name="_method" value="DELETE">
             <button>Log Out</button>
-          </form>
+          </form> -->
         </div>
       </nav>
     </header>
