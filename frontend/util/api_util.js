@@ -1,7 +1,7 @@
 var UserActions = require('../actions/user'),
     FeedActions = require('../actions/feed');
 module.exports = {
-  createStamp: function (formData) {
+  createStamp: function (formData, callback) {
     $.ajax({
       type: "POST",
       url: "api/stamps",
@@ -10,7 +10,7 @@ module.exports = {
       dataType: "json",
       data: formData,
       success: function (stamp) {
-
+        callback();
       }
     });
   },

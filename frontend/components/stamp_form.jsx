@@ -15,7 +15,9 @@ module.exports = React.createClass({
     formData.append("stamp[body]", this.state.body);
     formData.append("stamp[image]", this.state.imageFile);
 
-    ApiUtil.createStamp(formData);
+    ApiUtil.createStamp(formData, function () {
+      this.props.history.pushState(null, '#/');
+    }.bind(this));
   },
   changeFile: function (e) {
     var reader = new FileReader();
