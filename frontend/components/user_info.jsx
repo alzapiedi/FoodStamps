@@ -1,5 +1,7 @@
 var React = require('react'),
-    FollowToggle = require('./follow_toggle');
+    FollowToggle = require('./follow_toggle'),
+    SessionsApiUtil = require('../util/sessions_api_util'),
+    CurrentUserStore = require('../stores/current_user');
 
 
 // this.props.user
@@ -7,29 +9,20 @@ var React = require('react'),
 //  { username, follows (boolean), post_count, followers_count, following_count, me, stamps}
 
 module.exports = React.createClass({
-  /////////////////////////////////////////////DELETE THIS CRAP!!!///////////
-  logOut: function () {
-    $.ajax({
-      type: "DELETE",
-      url: "session/",
-      success: function () {
-        window.location.reload();
-      },
-      error: function () {
-        window.location.reload();
-      }
+  logout: function () {
+    SessionsApiUtil.logout(function () {
+      window.location.reload();
     });
   },
-  ///////////////////////////////////////////////////////////////////////
   render: function () {
     var user = this.props.user;
     var button;
-    if (user.me) {
+    if (user.id === CurrentUserStore.currentUser().id) {
       button = (
         <div className='user-buttons group'>
           <h1>{user.username}</h1>
           <a className='user-info-edit' href='#/edit'>Edit Profile</a>
-          <button onClick={this.logOut}>Log Out</button>
+          <button onClick={this.logout}>Log Out</button>
         </div>
       );
     } else {

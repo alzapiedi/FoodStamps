@@ -7,5 +7,13 @@ module.exports = {
       actionType: FeedConstants.UPDATE_FEED,
       feed: feed
     });
+  },
+  addComment: function (comment, stamp, user) {
+    AppDispatcher.dispatch({
+      actionType: "COMMENT",
+      comment: comment,
+      stamp: stamp,
+      user: user
+    });
   }
 };
