@@ -1,6 +1,6 @@
 var UserActions = require('../actions/user'),
     CurrentUserActions = require('../actions/current_user'),
-    FeedActions = require('../actions/feed');
+    StampActions = require('../actions/stamp');
 module.exports = {
   createStamp: function (formData, callback) {
     $.ajax({
@@ -11,7 +11,7 @@ module.exports = {
       dataType: "json",
       data: formData,
       success: function (stamp) {
-        callback();
+        callback && callback();
       }
     });
   },
@@ -22,6 +22,7 @@ module.exports = {
       dataType: "json",
       success: function (user) {
         UserActions.addUser(user);
+        StampActions.updateFeed(user.stamps);
       }
     });
   },
@@ -44,8 +45,7 @@ module.exports = {
       url: "api/feed",
       dataType: "json",
       success: function (feed) {
-        console.log(feed);
-        FeedActions.updateFeed(feed);
+        StampActions.updateFeed(feed);
       }
     });
   },
@@ -69,7 +69,7 @@ module.exports = {
       }
     });
   },
-  createComment: function (comment, cb) {
+  createComment: function (comment, callback) {
     var stamp = comment.stamp;
     $.ajax({
       type: "POST",
@@ -77,10 +77,28 @@ module.exports = {
       dataType: "json",
       data: comment,
       success: function (comment) {
-        FeedActions.addComment(comment, stamp);
-        cb();
-        // CommentActions.addComment(comment);
-        // callback && callback();
+        StampActions.addComment(comment, stamp);
+        callback && callback();
+      }
+    });
+  },
+  createLike: function (id) {
+    $.ajax({
+      type: "POST",
+      url: "api/stamps/" + id + "/like",
+      dataType: "json",
+      success: function () {
+        StampActions.addLike(id);
+      }
+    });
+  },
+  destroyLike: function (id) {
+    $.ajax({
+      type: "DELETE",
+      url: "api/stamps/" + id + "/like",
+      dataType: "json",
+      success: function () {
+        StampActions.removeLike(id);
       }
     });
   }

@@ -5,6 +5,12 @@ class Api::CommentsController < ApplicationController
       stamp_id: params[:stamp_id],
       user_id: current_user.id
     )
-    render json: comment
+    username = current_user.username
+    render json: {
+      body: comment.body,
+      id: comment.id,
+      user_id: comment.user_id,
+      username: username
+    }
   end
 end

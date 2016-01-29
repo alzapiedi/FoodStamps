@@ -1,21 +1,21 @@
 var React = require('react'),
-    FeedStore = require('../stores/feed'),
+    StampStore = require('../stores/stamp'),
     StampList = require('./stamp_list'),
     ApiUtil = require('../util/api_util');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return {stamps: FeedStore.all()};
+    return {stamps: StampStore.all()};
   },
   componentDidMount: function () {
-    this.feedListener = FeedStore.addListener(this.updateState);
+    this.feedListener = StampStore.addListener(this.updateState);
     ApiUtil.fetchFeed(this.props.params.id);
   },
   componentWillUnmount: function () {
     this.feedListener.remove();
   },
   updateState: function () {
-    this.setState({stamps: FeedStore.all()});
+    this.setState({stamps: StampStore.all()});
   },
   render: function () {
     if (!this.state.stamps || this.state.stamps.length === 0) { return <div className='stamp-list-none'>No stamps to show</div>; }

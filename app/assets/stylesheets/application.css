@@ -431,7 +431,37 @@
   margin: 10px 0;;
 }
 
+.likes {
+  display: block;
+  margin-bottom: 10px;
+  color: #4b4f54;
+  font-weight: bold;
+}
+
+.stamp-like-comment {
+  display: block;
+}
+
+.like-button, .unlike-button {
+  float: left;
+  padding: 20px 0;
+  margin-right: 10px;
+}
+
+.unlike-button {
+  color: red;
+}
+
+.like-button {
+  color: #BDBDBD;
+}
+
+.like-button:hover, .unlike-button:hover {
+  cursor: pointer;
+}
+
 .comment-form {
+  float: left;
   padding: 25px 0;
 }
 

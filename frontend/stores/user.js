@@ -17,17 +17,6 @@ UserStore.__onDispatch = function (payload) {
     _users[payload.followee_id].follows = false;
     _users[payload.followee_id].followers_count -= 1;
     UserStore.__emitChange();
-  } else if (payload.actionType === "COMMENT") {
-    var stamps = _users[payload.stamp.user_id].stamps;
-    var idx;
-    var comment = payload.comment;
-    comment.username = CurrentUserStore.currentUser().username;
-    for (var i = 0; i < stamps.length; i++) {
-      if (stamps[i].id === payload.stamp.id) {
-        stamps[i].comments.push(comment);
-      }
-    }
-    UserStore.__emitChange();
   }
 };
 

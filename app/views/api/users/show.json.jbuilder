@@ -12,6 +12,8 @@ json.stamps(@stamps) do |stamp|
     json.username comment.user.username
     json.user_id comment.user.id
   end
+  json.liked @current_user.likes?(stamp)
+  json.likes stamp.likes.count
   json.thumb_avatar asset_path(stamp.user.avatar.url(:thumb))
   json.username stamp.user.username
   json.extract!(stamp, :id, :body, :user_id, :created_at)
