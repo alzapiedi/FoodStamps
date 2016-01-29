@@ -13,6 +13,14 @@ module.exports = React.createClass({
     }.bind(this));
   },
 
+  guestLogin: function (e) {
+    e.preventDefault();
+    var credentials = { username: "nick", password: "password" };
+    SessionsApiUtil.login(credentials, function () {
+      this.history.pushState({}, "/");
+    }.bind(this));
+  },
+
   render: function() {
     return (
       <div className='user-form'>
@@ -24,6 +32,7 @@ module.exports = React.createClass({
           <input type='password' name='password' placeholder="Password"/>
           <button>Log In</button>
         </form>
+        <button onClick={this.guestLogin}>Guest</button>
         <div className='errors'>
 
         </div>

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :stamps, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_attached_file :avatar, styles: { medium: "150x150>", thumb: "25x25>" }, default_url: ":style/missing.jpg"
+  has_attached_file :avatar, styles: { medium: "150x150#", thumb: "25x25#" }, default_url: ":style/missing.jpg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   def password=(password)
