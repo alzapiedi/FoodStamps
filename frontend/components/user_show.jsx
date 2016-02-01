@@ -3,7 +3,8 @@ var React = require('react'),
     StampStore = require('../stores/stamp'),
     ApiUtil = require('../util/api_util'),
     UserInfo = require('./user_info'),
-    StampList = require('./stamp_list');
+    StampList = require('./stamp_list'),
+    EditUser = require('./edit_user');
 
 module.exports = React.createClass({
   getInitialState: function () {

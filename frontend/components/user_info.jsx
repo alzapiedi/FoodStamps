@@ -1,4 +1,5 @@
 var React = require('react'),
+    EditUser = require('./edit_user'),
     FollowToggle = require('./follow_toggle'),
     SessionsApiUtil = require('../util/sessions_api_util'),
     CurrentUserStore = require('../stores/current_user');
@@ -9,10 +10,16 @@ var React = require('react'),
 //  { username, follows (boolean), post_count, followers_count, following_count, me, stamps}
 
 module.exports = React.createClass({
+  getInitialState: function () {
+    return { show: false };
+  },
   logout: function () {
     SessionsApiUtil.logout(function () {
       window.location.reload();
     });
+  },
+  toggleShow: function () {
+    this.setState({ show: !this.state.show });
   },
   render: function () {
     var user = this.props.user;
@@ -21,7 +28,7 @@ module.exports = React.createClass({
       button = (
         <div className='user-buttons group'>
           <h1>{user.username}</h1>
-          <a className='user-info-edit' href='#/edit'>Edit Profile</a>
+          <a className='user-info-edit' onClick={this.toggleShow}>Edit Profile</a>
           <button onClick={this.logout}>Log Out</button>
         </div>
       );
@@ -55,6 +62,7 @@ module.exports = React.createClass({
             </div>
           </div>
         </div>
+        <EditUser show={this.state.show} toggleShow={this.toggleShow}/>
       </div>
     );
   }
