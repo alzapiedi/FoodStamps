@@ -2,6 +2,13 @@ class Stamp < ActiveRecord::Base
   belongs_to :user
   has_many :comments
   has_many :likes
+  has_many :tags, through: :comments, source: :tags
+  has_many :mentions, through: :comments, source: :mentions
+  after_save :new_comment
   has_attached_file :image
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
+  def new_comment
+    Comment.create(body: self.body, stamp_id: self.id, user_id: self.user_id)
+  end
 end

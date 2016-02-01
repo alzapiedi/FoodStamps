@@ -4,6 +4,10 @@ json.array!(@stamps) do |stamp|
     json.body comment.body
     json.username comment.user.username
     json.user_id comment.user.id
+    json.mentions(stamp.mentions) do |mention|
+      json.username mention.user.username
+      json.user_id mention.user_id
+    end
   end
   json.liked @current_user.likes?(stamp)
   json.likes stamp.likes.count

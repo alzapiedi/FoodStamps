@@ -55,7 +55,6 @@ function _ensureLoggedIn(nextState, replace, callback) {
     if (!CurrentUserStore.isLoggedIn()) {
       replace({}, "/login");
     }
-    StampStore.reset();
     callback();
   }
 }

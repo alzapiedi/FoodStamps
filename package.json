@@ -7,29 +7,28 @@
     "doc": "docs",
     "test": "test"
   },
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "dependencies": {
     "babel-core": "^6.2.0",
     "babel-loader": "^6.2.0",
     "babel-preset-react": "^6.1.18",
-    "webpack": "^1.12.2",
     "flux": "^2.1.1",
     "history": "~1.17.0",
     "jquery": "^2.1.4",
     "react": "^0.14.2",
+    "react-addons-create-fragment": "^0.14.7",
     "react-addons-linked-state-mixin": "^0.14.2",
     "react-dom": "^0.14.2",
-    "react-router": "^1.0.0-rc4"
+    "react-router": "^1.0.0-rc4",
+    "webpack": "^1.12.2"
   },
   "scripts": {
-  "postinstall": "./node_modules/.bin/webpack",
-  "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "./node_modules/.bin/webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-   "node": "4.1.1",
-   "npm": "2.1.x"
+    "node": "4.1.1",
+    "npm": "2.1.x"
   },
   "repository": {
     "type": "git",

@@ -18,11 +18,11 @@ module.exports = React.createClass({
     this.userListener.remove();
     this.feedListener.remove();
   },
-  componentWillReceiveProps: function(newProps) {
-    if (!UserStore.find(newProps.params.id)) {
-      ApiUtil.fetchUser(newProps.params.id);
-    }
-    this.setState({user: UserStore.find(newProps.params.id)});
+  componentWillReceiveProps: function (newProps) {
+    StampStore.reset();
+    ApiUtil.fetchUser(newProps.params.id, function () {
+      this.setState({user: UserStore.find(newProps.params.id), feed: StampStore.all()});
+    }.bind(this));
   },
   updateState: function () {
     this.setState({user: UserStore.find(this.props.params.id), feed: StampStore.all()});

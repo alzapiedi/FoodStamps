@@ -20,6 +20,16 @@ UserStore.__onDispatch = function (payload) {
   }
 };
 
+UserStore.findId = function (username) {
+  for (var id in _users) {
+    if (_users.hasOwnProperty(id)) {
+      if (_users[id].username === username) {
+        return id;
+      }
+    }
+  }
+};
+
 UserStore.find = function (id) {
   return _users[id];
 };

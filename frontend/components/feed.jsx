@@ -5,6 +5,7 @@ var React = require('react'),
 
 module.exports = React.createClass({
   getInitialState: function () {
+    StampStore.reset();
     return {stamps: StampStore.all()};
   },
   componentDidMount: function () {

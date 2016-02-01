@@ -7,6 +7,7 @@ var Store = require('flux/utils').Store,
     _stamps = [];
 
 StampStore.all = function () {
+  _hasBeenFetched = false;
   return _stamps.slice();
 };
 

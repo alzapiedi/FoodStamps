@@ -32,7 +32,6 @@ module.exports = React.createClass({
           <span className='likes'>
             {stamp.likes + likes}
           </span>
-          <a href={'#/users/' + stamp.user_id}>{stamp.username}</a>{stamp.body}
           <CommentsIndex comments={comments} />
           <div className='stamp-like-comment group'>
             <LikeToggle stamp={stamp} />

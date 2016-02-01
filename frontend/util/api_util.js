@@ -15,14 +15,16 @@ module.exports = {
       }
     });
   },
-  fetchUser: function (id) {
+  fetchUser: function (id, callback) {
     $.ajax({
       type: "GET",
       url: "api/users/" + id,
       dataType: "json",
       success: function (user) {
+        console.log(user);
         UserActions.addUser(user);
         StampActions.updateFeed(user.stamps);
+        callback && callback();
       }
     });
   },

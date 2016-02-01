@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129185236) do
+ActiveRecord::Schema.define(version: 20160201164847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,11 @@ ActiveRecord::Schema.define(version: 20160129185236) do
 
   add_index "likes", ["user_id", "stamp_id"], name: "index_likes_on_user_id_and_stamp_id", unique: true, using: :btree
 
+  create_table "mentions", force: :cascade do |t|
+    t.integer "comment_id", null: false
+    t.integer "user_id",    null: false
+  end
+
   create_table "stamps", force: :cascade do |t|
     t.text     "body",               null: false
     t.integer  "user_id",            null: false
@@ -57,6 +62,19 @@ ActiveRecord::Schema.define(version: 20160129185236) do
   end
 
   add_index "stamps", ["user_id"], name: "index_stamps_on_user_id", using: :btree
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "comment_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "tag_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",            null: false

@@ -1,8 +1,12 @@
 class Api::UsersController < ApplicationController
   def show
-    @current_user = current_user
-    @user = User.includes(:stamps).find(params[:id])
-    @stamps = @user.stamps.order(created_at: :desc)
+    if params[:id].to_i == 0
+      render json: User.find_by_username(params[:id]).id
+    else
+      @current_user = current_user
+      @user = User.includes(:stamps).find(params[:id])
+      @stamps = @user.stamps.order(created_at: :desc)
+    end
   end
 
   def create
