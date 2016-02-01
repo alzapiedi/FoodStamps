@@ -308,6 +308,11 @@
   font-size: 14px;
 }
 
+.stamp-list-none img {
+  width: 100px;
+  margin: auto;
+}
+
 .user-profile {
   box-sizing: border-box;
   /*padding-left: 180px;*/
@@ -433,6 +438,14 @@
 
 .comment {
   margin: 10px 0;;
+}
+
+.comment-form {
+  width: 400px;
+}
+
+.comment-form input {
+  width: 400px;
 }
 
 .likes {

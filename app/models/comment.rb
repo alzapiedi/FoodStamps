@@ -5,6 +5,8 @@ class Comment < ActiveRecord::Base
   has_many :taggings
   has_many :tags, through: :taggings, source: :tag
   after_save :parse_string
+  include PgSearch
+  multisearchable :against => [:body]
 
   def parse_string
     tags = body.split(" ").select { |word| word.start_with?("#") }

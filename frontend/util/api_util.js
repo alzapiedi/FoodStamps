@@ -105,5 +105,16 @@ module.exports = {
         callback && callback();
       }
     });
+  },
+  search: function (query) {
+    $.ajax({
+      type: "GET",
+      url: "api/search",
+      data: {query: query},
+      success: function (stamps) {
+        console.log(stamps);
+        StampActions.updateFeed(stamps);
+      }
+    });
   }
 };

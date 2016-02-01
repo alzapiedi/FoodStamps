@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   end
 
   def feed
-   @feed = Stamp.includes(:user).includes(:comments).includes(:likes).includes(:tags).where(user: self.followees).order(created_at: :desc)
+   @feed = Stamp.includes(:user).includes(:comments).includes(:likes).includes(:tags).where(user: self.followees.to_a.concat([self])).order(created_at: :desc)
   end
 
   def follows?(user)

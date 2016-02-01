@@ -11,7 +11,8 @@ var React = require('react'),
     CurrentUserStore = require('./stores/current_user'),
     SessionsApiUtil = require('./util/sessions_api_util'),
     Header = require('./components/header'),
-    StampStore = require('./stores/stamp');
+    StampActions = require('./actions/stamp'),
+    ApiUtil = require('./util/api_util');
 
 var App = React.createClass({
   componentDidMount: function () {
@@ -41,6 +42,7 @@ var routes = (
       <Route path="users/new" component={ UserForm } />
       <Route path='users/:id' component={UserShow} onEnter={_ensureLoggedIn}/>
       <Route path='new' component={StampForm} onEnter={_ensureLoggedIn}/>
+      <Route path='search/:query' component={Feed} onEnter={performSearch}/>
     </Route>
   </Router>
 );
@@ -58,6 +60,11 @@ function _ensureLoggedIn(nextState, replace, callback) {
     callback();
   }
 }
+
+function performSearch(nextState, replace, callback) {
+  ApiUtil.search(nextState.params.query);
+}
+
 
 document.addEventListener('DOMContentLoaded', function () {
   ReactDOM.render(routes, document.getElementById('root'));

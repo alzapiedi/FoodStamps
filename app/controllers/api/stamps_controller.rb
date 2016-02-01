@@ -9,6 +9,12 @@ class Api::StampsController < ApplicationController
     end
   end
 
+  def search
+    @stamps = Stamp.stamp_search(params[:query])
+    @current_user = current_user
+    render 'api/feeds/show'
+  end
+
   private
   def stamp_params
     params.require(:stamp).permit(:body, :image)

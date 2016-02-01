@@ -1,4 +1,6 @@
 var React = require('react'),
+    Search = require('./search'),
+    ApiUtil = require('../util/api_util'),
     CurrentUserStore = require('../stores/current_user');
 
 module.exports = React.createClass({
@@ -9,12 +11,10 @@ module.exports = React.createClass({
       <header className='header'>
         <nav className='header-nav group'>
           <h1 className="header-logo">
-            <a href="#">FoodStamps</a>
+            <a onClick={ApiUtil.fetchFeed} href="#">FoodStamps</a>
           </h1>
 
-          <div className='header-search'>
-            <input type='text' placeholder="Search"/>
-          </div>
+          <Search />
 
           <div className='header-profile group'>
             <a className='header-new' href='#/new'><i className="fa fa-camera-retro fa-2x"></i></a>

@@ -20,6 +20,7 @@ u9 = User.create(username: "meatballs4u", password: "password", avatar: File.ope
 u10 = User.create(username: "hambone06", password: "password", avatar: File.open("app/assets/images/profpic2.jpeg"))
 
 Stamp.destroy_all
+Comment.destroy_all
 s3 = Stamp.create(body: "Shrimp fried rice", user_id: u1.id, image: File.open("app/assets/images/DSC_6079.JPG"))
 s7 = Stamp.create(body: "Chicken and waffles", user_id: u3.id, image: File.open("app/assets/images/chicken-and-waffles-3-1024x682.jpg"))
 s15 = Stamp.create(body: "The halal guys are the best", user_id: u5.id, image: File.open("app/assets/images/20121002-halal-taste-test-famous-halal-52nd-platter.jpg"))
@@ -157,7 +158,7 @@ Follow.create(followee_id: u7.id, follower_id: u10.id)
 Follow.create(followee_id: u8.id, follower_id: u10.id)
 Follow.create(followee_id: u9.id, follower_id: u10.id)
 
-Comment.destroy_all
+
 Comment.create(stamp_id: s1.id, user_id: u3.id, body: "looks delicious")
 Comment.create(stamp_id: s1.id, user_id: u4.id, body: "wow i want some")
 Comment.create(stamp_id: s2.id, user_id: u4.id, body: "How good is that")

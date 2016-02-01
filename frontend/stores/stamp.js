@@ -49,6 +49,10 @@ StampStore.__onDispatch = function (payload) {
     _stamps[idx].likes -= 1;
     _stamps[idx].liked = false;
     StampStore.__emitChange();
+  } else if (payload.actionType === StampConstants.RESET) {
+    _stamps = [];
+    _hasBeenFetched = false;
+    StampStore.__emitChange();
   }
 };
 
