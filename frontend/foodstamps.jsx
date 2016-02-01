@@ -10,7 +10,8 @@ var React = require('react'),
     UserForm = require('./components/user_form'),
     CurrentUserStore = require('./stores/current_user'),
     SessionsApiUtil = require('./util/sessions_api_util'),
-    Header = require('./components/header');
+    Header = require('./components/header'),
+    StampStore = require('./stores/stamp');
 
 var App = React.createClass({
   componentDidMount: function () {
@@ -54,6 +55,7 @@ function _ensureLoggedIn(nextState, replace, callback) {
     if (!CurrentUserStore.isLoggedIn()) {
       replace({}, "/login");
     }
+    StampStore.reset();
     callback();
   }
 }

@@ -82,23 +82,25 @@ module.exports = {
       }
     });
   },
-  createLike: function (id) {
+  createLike: function (id, callback) {
     $.ajax({
       type: "POST",
       url: "api/stamps/" + id + "/like",
       dataType: "json",
       success: function () {
         StampActions.addLike(id);
+        callback && callback();
       }
     });
   },
-  destroyLike: function (id) {
+  destroyLike: function (id, callback) {
     $.ajax({
       type: "DELETE",
       url: "api/stamps/" + id + "/like",
       dataType: "json",
       success: function () {
         StampActions.removeLike(id);
+        callback && callback();
       }
     });
   }

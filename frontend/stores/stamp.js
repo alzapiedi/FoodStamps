@@ -3,6 +3,7 @@ var Store = require('flux/utils').Store,
     StampConstants = require('../constants/stamp'),
     CurrentUserStore = require('./current_user'),
     StampStore = new Store(AppDispatcher),
+    _hasBeenFetched = false;
     _stamps = [];
 
 StampStore.all = function () {
@@ -18,10 +19,20 @@ StampStore.find = function (stamp_id) {
   return -1;
 };
 
+StampStore.hasBeenFetched = function () {
+  return _hasBeenFetched;
+};
+
+StampStore.reset = function () {
+  _stamps = [];
+  _hasBeenFetched = false;
+};
+
 StampStore.__onDispatch = function (payload) {
   var idx;
   if (payload.actionType === StampConstants.UPDATE_FEED) {
     _stamps = payload.feed;
+    _hasBeenFetched = true;
     StampStore.__emitChange();
   } else if (payload.actionType === StampConstants.ADD_COMMENT) {
     idx = StampStore.find(payload.stamp.id);

@@ -18,7 +18,8 @@ module.exports = React.createClass({
     this.setState({stamps: StampStore.all()});
   },
   render: function () {
-    if (!this.state.stamps || this.state.stamps.length === 0) { return <div className='stamp-list-none'>No stamps to show</div>; }
-      return <StampList stamps={this.state.stamps} />;
+    if (this.state.stamps.length === 0 && StampStore.hasBeenFetched()) { return <div className='stamp-list-none'>No stamps to show</div>; }
+    else if (this.state.stamps.length === 0 && !StampStore.hasBeenFetched()) { return <div className='stamp-list-none'><i className="fa fa-spinner fa-3x"/></div>; }
+    else { return <StampList stamps={this.state.stamps} />; }
   }
 });
