@@ -6,11 +6,13 @@ class Api::CommentsController < ApplicationController
       user_id: current_user.id
     )
     username = current_user.username
+    mentions = comment.mentions.map { |mention| { user_id: mention.user_id, username: mention.user.username } }
     render json: {
       body: comment.body,
       id: comment.id,
       user_id: comment.user_id,
-      username: username
+      username: username,
+      mentions: mentions
     }
   end
 end
