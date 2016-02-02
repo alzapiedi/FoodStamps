@@ -11,7 +11,7 @@ var React = require('react'),
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return { show: false };
+    return { editShow: false };
   },
   logout: function () {
     SessionsApiUtil.logout(function () {
@@ -19,7 +19,7 @@ module.exports = React.createClass({
     });
   },
   toggleShow: function () {
-    this.setState({ show: !this.state.show });
+    this.setState({ editShow: !this.state.editShow });
   },
   render: function () {
     var user = this.props.user;
@@ -62,7 +62,7 @@ module.exports = React.createClass({
             </div>
           </div>
         </div>
-        <EditUser show={this.state.show} toggleShow={this.toggleShow}/>
+        <EditUser user={user} show={this.state.editShow} toggleShow={this.toggleShow}/>
       </div>
     );
   }

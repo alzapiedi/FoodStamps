@@ -19,4 +19,15 @@ class Api::UsersController < ApplicationController
       render json: @user.errors.full_messages
     end
   end
+
+  def update
+    user = User.find(params[:id])
+    user.update(user_params)
+    render json: {}
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:username, :avatar)
+  end
 end

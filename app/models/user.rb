@@ -32,6 +32,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.find_or_create_by_auth_hash(auth_hash)
+    provider = auth_hash[:provider]
+    uid = auth_hash[:uid]
+
+    user = User.find_by(provider: provider, uid: uid)
+
+    return user if user
+
+    User.create(
+      provider: provider,
+      uid: uid,
+      username: auth_hash[:info][:name],
+      password: SecureRandom::urlsafe_base64
+    )
+  end
+
   def reset_session_token!
     self.session_token = SecureRandom.urlsafe_base64
     save

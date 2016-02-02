@@ -182,5 +182,5 @@ Comment.create(stamp_id: s10.id, user_id: u3.id, body: "looks delicious")
 
 
 150.times do
-  Like.create(stamp_id: rand(36) + s1.id, user_id: rand(10) + u1.id)
+  Like.create(stamp_id: rand(36) + s3.id, user_id: rand(10) + u1.id)
 end

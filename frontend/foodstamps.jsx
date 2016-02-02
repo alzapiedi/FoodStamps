@@ -12,7 +12,8 @@ var React = require('react'),
     SessionsApiUtil = require('./util/sessions_api_util'),
     Header = require('./components/header'),
     StampActions = require('./actions/stamp'),
-    ApiUtil = require('./util/api_util');
+    ApiUtil = require('./util/api_util'),
+    Modal = require('react-modal');
 
 var App = React.createClass({
   componentDidMount: function () {
@@ -67,6 +68,7 @@ function performSearch(nextState, replace, callback) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
+  Modal.setAppElement(document.getElementById('root'));
   ReactDOM.render(routes, document.getElementById('root'));
 });
 

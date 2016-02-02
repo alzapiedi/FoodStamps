@@ -21,7 +21,6 @@ module.exports = {
       url: "api/users/" + id,
       dataType: "json",
       success: function (user) {
-        console.log(user);
         UserActions.addUser(user);
         StampActions.updateFeed(user.stamps);
         callback && callback();
@@ -112,8 +111,20 @@ module.exports = {
       url: "api/search",
       data: {query: query},
       success: function (stamps) {
-        console.log(stamps);
         StampActions.updateFeed(stamps);
+      }
+    });
+  },
+  updateUser: function (formData, id, callback) {
+    $.ajax({
+      type: "PATCH",
+      url: "api/users/" + id,
+      processData: false,
+      contentType: false,
+      dataType: "json",
+      data: formData,
+      success: function () {
+        callback && callback();
       }
     });
   }
