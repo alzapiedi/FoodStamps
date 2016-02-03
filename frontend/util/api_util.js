@@ -105,13 +105,14 @@ module.exports = {
       }
     });
   },
-  search: function (query) {
+  search: function (query, callback) {
     $.ajax({
       type: "GET",
       url: "api/search",
       data: {query: query},
       success: function (stamps) {
         StampActions.updateFeed(stamps);
+        callback && callback();
       }
     });
   },

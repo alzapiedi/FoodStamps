@@ -39,11 +39,11 @@ class User < ActiveRecord::Base
     user = User.find_by(provider: provider, uid: uid)
 
     return user if user
-
+    username = auth_hash[:info][:name].gsub(" ","_").downcase
     User.create(
       provider: provider,
       uid: uid,
-      username: auth_hash[:info][:name],
+      username: username,
       password: SecureRandom::urlsafe_base64
     )
   end

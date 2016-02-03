@@ -35,10 +35,7 @@ var customStyles = {
 module.exports = React.createClass({
   mixins: [LinkedState],
   getInitialState: function () {
-    return {searchQuery: "", imageFile: null, imageUrl: "", showMap: false, places: [], disabled: false};
-  },
-  componentDidMount: function () {
-
+    return {locName: "", imageFile: null, imageUrl: "", showMap: false, disabled: true};
   },
   openMap: function () {
     this.setState({showMap: true}, function () {
@@ -50,32 +47,31 @@ module.exports = React.createClass({
           zoom: 13,
         };
       this.map = new google.maps.Map(mapDOMNode, mapOptions);
-      this.markers = [];
       if (loc) {
-        this.createMarker(loc);
+        this.marker = new google.maps.Marker({
+          map: this.map,
+          position: loc.geometry.location
+        });
       }
+      var input = document.getElementById('location-search');
+      var autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.bindTo('bounds', this.map);
+      autocomplete.addListener('place_changed', function () {
+        this.marker && this.marker.setMap(null);
+        var place = autocomplete.getPlace();
+        this.marker = new google.maps.Marker({
+          map: this.map,
+          position: place.geometry.location
+        });
+        this.map.panTo(place.geometry.location);
+        this.setState({taggedLocation: place, locName: place.name});
+      }.bind(this));
     }.bind(this));
 
   },
   closeMap: function () {
     this.setState({showMap: false});
     delete this.map;
-  },
-  searchMap: function (e) {
-    e.preventDefault();
-    this.clearMarkers();
-    this.setState({places: []});
-    var request = {
-      query: e.target.children[0].value,
-      bounds: this.map.getBounds()
-    };
-    var service = new google.maps.places.PlacesService(this.map);
-    service.textSearch(request, function(results, status) {
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        this.setState({places: results});
-        this.map.panTo(results[0].geometry.location);
-      }
-    }.bind(this));
   },
   handleSubmit: function (e) {
     e.preventDefault();
@@ -99,62 +95,25 @@ module.exports = React.createClass({
   changeFile: function (e) {
     var reader = new FileReader();
     var file = e.currentTarget.files[0];
-
     reader.onloadend = function () {
-      this.setState({imageFile: file, imageUrl: reader.result});
+      this.setState({imageFile: file, imageUrl: reader.result, disabled: false});
     }.bind(this);
 
     if (file) {
-      reader.readAsDataURL(file); // will trigger a load end event when it completes, and invoke reader.onloadend
+      reader.readAsDataURL(file);// will trigger a load end event when it completes, and invoke reader.onloadend
     } else {
-      this.setState({imageFile: null, imageUrl: ""});
+      this.setState({imageFile: null, imageUrl: "", disabled: true});
     }
-  },
-  createMarker: function (place) {
-    var position = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
-    var marker = new google.maps.Marker({position: position, place_id: place.id});
-
-    this.markers.push(marker);
-    marker.setMap(this.map);
-  },
-  highlightMarker: function (id) {
-    var idx;
-    for (var i = 0; i < this.markers.length; i++) {
-      if (this.markers[i].place_id === id) {
-        idx = i;
-      }
-    }
-    return function () {
-      this.markers[idx].setAnimation(google.maps.Animation.BOUNCE);
-      this.highlighted = this.markers[idx];
-    }.bind(this);
-  },
-  unhighlightMarker: function () {
-    this.highlighted.setAnimation(null);
-  },
-  clearMarkers: function () {
-    for (var i = 0; i < this.markers.length; i++) {
-      var marker = this.markers[i];
-      marker.setMap(null);
-    }
-  },
-  tagLocation: function (place) {
-    return function () {
-      this.setState({taggedLocation: place, showMap: false, places: []});
-    }.bind(this);
   },
   render: function () {
     var imgBox;
     var tagLoc = this.state.taggedLocation ? this.state.taggedLocation.name : "Tag a location (optional)";
+    var locName = this.state.taggedLocation ? this.state.taggedLocation.name : "";
     if (this.state.imageUrl === "") {
       imgBox = <div></div>;
     } else {
       imgBox = <img className='preview-image' width={350} src={this.state.imageUrl}></img>;
     }
-    var searchResults = this.state.places.map(function (place, i) {
-      this.createMarker(place);
-      return <li className='map-search-li' onClick={this.tagLocation(place)} onMouseOver={this.highlightMarker(place.id)} onMouseOut={this.unhighlightMarker} key={i}>{place.name}</li>;
-    }.bind(this));
     return (
       <div className='stamp-form group'>
         <h1>Post a Stamp</h1>
@@ -168,13 +127,8 @@ module.exports = React.createClass({
         <Modal isOpen={this.state.showMap} onRequestClose={this.closeMap} style={customStyles}>
           <div className='map' ref='map'/>
           <div className='map-search group'>
-            <form onSubmit={this.searchMap}>
-              <input type='text' placeholder='Search for a location...'/>
-              <button>Search</button>
-            </form>
-            <ul className='map-search-results'>
-              {searchResults}
-            </ul>
+            <input type='text' id='location-search' placeholder='Search for a location...' valueLink={this.linkState("locName")}/>
+            <button onClick={this.closeMap} disabled={!this.state.taggedLocation}>Tag This Location</button>
           </div>
         </Modal>
       </div>

@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def omniauth_facebook
+    byebug
     @user = User.find_or_create_by_auth_hash(auth_hash)
     log_in(@user)
     redirect_to root_url + '#/'

@@ -8,6 +8,7 @@ module.exports = React.createClass({
     return { place: "", stamps: StampStore.all() };
   },
   componentDidMount: function () {
+    this.stampListener = StampStore.addListener(this.updateState);
     var mapDOMNode = this.refs.map;
       var mapOptions = {
         center: {lat: 40.725136, lng: -73.996900},
@@ -28,7 +29,12 @@ module.exports = React.createClass({
       }
     }.bind(this));
   },
-
+  componentWillUnmount: function () {
+    this.stampListener.remove();
+  },
+  updateState: function () {
+    this.setState({stamps: StampStore.all()});
+  },
   render: function () {
     return (
       <div className='location-show'>

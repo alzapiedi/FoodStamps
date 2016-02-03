@@ -6,6 +6,7 @@ module.exports = React.createClass({
       var stamps = this.props.stamps.map(function (stamp) {
         return <Stamp key={stamp.id} stamp={stamp}/>;
       });
+      stamps = stamps.length === 0 ? "No stamps to show." : stamps; 
       return (
         <div className='stamp-list'>
           {stamps}

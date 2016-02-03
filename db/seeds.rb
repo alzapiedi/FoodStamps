@@ -6,7 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
 User.destroy_all
 u1 = User.create(username: "nick", password: "password", avatar: File.open("app/assets/images/nick-alzapiedi.jpg"))
 u2 = User.create(username: "johnny_rocket", password: "password", avatar: File.open("app/assets/images/face1.jpg"))
@@ -18,6 +17,7 @@ u7 = User.create(username: "lebron_james", password: "password", avatar: File.op
 u8 = User.create(username: "mike_tyson", password: "password", avatar: File.open("app/assets/images/tyson.jpg"))
 u9 = User.create(username: "meatballs4u", password: "password", avatar: File.open("app/assets/images/profpic.jpg"))
 u10 = User.create(username: "hambone06", password: "password", avatar: File.open("app/assets/images/profpic2.jpeg"))
+u11 = User.create(username: "guest", password: "password", avatar: File.open("app/assets/images/guest.jpeg") )
 
 Stamp.destroy_all
 Comment.destroy_all
@@ -57,6 +57,34 @@ s9 = Stamp.create(body: "Best pizza ever!", user_id: u3.id, image: File.open("ap
 s35 = Stamp.create(body: "Nothing like a yankee pot roast!", user_id: u10.id, image: File.open("app/assets/images/potroast.jpg"))
 s13 = Stamp.create(body: "Apple pie", user_id: u5.id, image: File.open("app/assets/images/52912.jpg"))
 s28 = Stamp.create(body: "Beef Wellington", user_id: u1.id, image: File.open("app/assets/images/beef-wellington.jpg"))
+
+comments = [
+  "looks #delicious",
+  "wow how good is that",
+  "omg you better save me some",
+  "want",
+  "i need this in my mouth",
+  "WOW",
+  "you are gonna get fat",
+  "so jealous",
+  "looks so amazing",
+  "lucky",
+  "now thats some good eatin",
+  "that sure looks tasty",
+  "great meal you got there",
+  "the things i would do for a bite of that",
+  "i need to try this",
+  "aren't you on a diet? LOL",
+  "super tasty",
+  "i am salivating",
+  "great now im hungry",
+  "i wish i had some of this",
+  "never seen food look so good",
+  "i want it so bad"
+]
+
+
+
 
 
 Follow.destroy_all
@@ -158,29 +186,29 @@ Follow.create(followee_id: u7.id, follower_id: u10.id)
 Follow.create(followee_id: u8.id, follower_id: u10.id)
 Follow.create(followee_id: u9.id, follower_id: u10.id)
 
-
-Comment.create(stamp_id: s1.id, user_id: u3.id, body: "looks delicious")
-Comment.create(stamp_id: s1.id, user_id: u4.id, body: "wow i want some")
-Comment.create(stamp_id: s2.id, user_id: u4.id, body: "How good is that")
-Comment.create(stamp_id: s2.id, user_id: u5.id, body: "Save me some!")
-Comment.create(stamp_id: s3.id, user_id: u2.id, body: "looks delicious")
-Comment.create(stamp_id: s3.id, user_id: u3.id, body: "looks delicious")
-Comment.create(stamp_id: s4.id, user_id: u1.id, body: "looks delicious")
-Comment.create(stamp_id: s4.id, user_id: u4.id, body: "looks delicious")
-Comment.create(stamp_id: s5.id, user_id: u1.id, body: "looks delicious")
-Comment.create(stamp_id: s5.id, user_id: u3.id, body: "looks delicious")
-Comment.create(stamp_id: s6.id, user_id: u4.id, body: "looks delicious")
-Comment.create(stamp_id: s6.id, user_id: u5.id, body: "looks delicious")
-Comment.create(stamp_id: s7.id, user_id: u2.id, body: "looks delicious")
-Comment.create(stamp_id: s7.id, user_id: u1.id, body: "looks delicious")
-Comment.create(stamp_id: s8.id, user_id: u5.id, body: "looks delicious")
-Comment.create(stamp_id: s8.id, user_id: u4.id, body: "looks delicious")
-Comment.create(stamp_id: s9.id, user_id: u5.id, body: "looks delicious")
-Comment.create(stamp_id: s9.id, user_id: u1.id, body: "looks delicious")
-Comment.create(stamp_id: s10.id, user_id: u2.id, body: "looks delicious")
-Comment.create(stamp_id: s10.id, user_id: u3.id, body: "looks delicious")
-
+Follow.create(followee_id: u1.id, follower_id: u11.id)
+Follow.create(followee_id: u2.id, follower_id: u11.id)
+Follow.create(followee_id: u3.id, follower_id: u11.id)
+Follow.create(followee_id: u4.id, follower_id: u11.id)
+Follow.create(followee_id: u5.id, follower_id: u11.id)
+Follow.create(followee_id: u6.id, follower_id: u11.id)
+Follow.create(followee_id: u7.id, follower_id: u11.id)
+Follow.create(followee_id: u8.id, follower_id: u11.id)
+Follow.create(followee_id: u9.id, follower_id: u11.id)
+Follow.create(followee_id: u10.id, follower_id: u11.id)
 
 150.times do
   Like.create(stamp_id: rand(36) + s3.id, user_id: rand(10) + u1.id)
+end
+
+comments.each do |comment|
+  sid = rand(36) + s3.id
+  while sid == s22.id || sid == s23.id
+    sid = rand(36) + s3.id
+  end
+  uid = rand(10) + u1.id
+  while Stamp.find(sid).user_id == uid
+    uid = rand(10) + u1.id
+  end
+  Comment.create(stamp_id: sid, user_id: uid, body: comment)
 end

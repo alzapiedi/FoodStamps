@@ -15,7 +15,7 @@ module.exports = React.createClass({
 
   guestLogin: function (e) {
     e.preventDefault();
-    var credentials = { username: "nick", password: "password" };
+    var credentials = { username: "guest", password: "password" };
     SessionsApiUtil.login(credentials, function () {
       this.history.pushState({}, "/");
     }.bind(this));
