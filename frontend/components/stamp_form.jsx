@@ -1,6 +1,6 @@
 var React = require('react'),
-    LinkedState = require('react-addons-linked-state-mixin'),
     StampLocation = require('./stamp_location'),
+    LinkedState = require('react-addons-linked-state-mixin'),
     ApiUtil = require('../util/api_util'),
     Modal = require('react-modal');
 
@@ -19,7 +19,7 @@ var customStyles = {
     top                        : '50%',
     left                       : '50%',
     width                      : '500px',
-    height                     : '700px',
+    height                     : '500px',
     transform                  : 'translateX(-50%) translateY(-50%)',
     border                     : '1px solid #ccc',
     background                 : '#fff',
@@ -48,6 +48,7 @@ module.exports = React.createClass({
           zoom: 13,
         };
       this.map = new google.maps.Map(mapDOMNode, mapOptions);
+      this.markers = [];
     }.bind(this));
 
   },
@@ -55,9 +56,11 @@ module.exports = React.createClass({
     this.setState({showMap: false});
     delete this.map;
   },
-  searchMap: function () {
+  searchMap: function (e) {
+    e.preventDefault();
+    this.clearMarkers();
     var request = {
-      query: this.state.searchQuery,
+      query: e.target.value,
       bounds: this.map.getBounds()
     };
     var service = new google.maps.places.PlacesService(this.map);
@@ -93,7 +96,41 @@ module.exports = React.createClass({
       this.setState({imageFile: null, imageUrl: ""});
     }
   },
+  createMarker: function (place) {
+    var position = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
+    var marker = new google.maps.Marker({position: position, place_id: place.id});
+
+    this.markers.push(marker);
+    marker.setMap(this.map);
+  },
+  highlightMarker: function (id) {
+    var idx;
+    for (var i = 0; i < this.markers.length; i++) {
+      if (this.markers[i].place_id === id) {
+        idx = i;
+      }
+    }
+    return function () {
+      this.markers[idx].setAnimation(google.maps.Animation.BOUNCE);
+      this.highlighted = this.markers[idx];
+    }.bind(this);
+  },
+  unhighlightMarker: function () {
+    this.highlighted.setAnimation(null);
+  },
+  clearMarkers: function () {
+    for (var i = 0; i < this.markers.length; i++) {
+      var marker = this.markers[i];
+      marker.setMap(null);
+    }
+  },
+  tagLocation: function (place) {
+    return function () {
+      this.setState({taggedLocation: place, showMap: false});
+    }.bind(this)
+  },
   render: function () {
+    console.log(this.state.taggedLocation);
     var imgBox;
     if (this.state.imageUrl === "") {
       imgBox = <div></div>;
@@ -101,8 +138,9 @@ module.exports = React.createClass({
       imgBox = <img className='preview-image' width={350} src={this.state.imageUrl}></img>;
     }
     var searchResults = this.state.places.map(function (place, i) {
-      return <li key={i}>{place.name}</li>;
-    });
+      this.createMarker(place);
+      return <li className='map-search-li' onClick={this.tagLocation(place)} onMouseOver={this.highlightMarker(place.id)} onMouseOut={this.unhighlightMarker} key={i}>{place.name}</li>;
+    }.bind(this));
     return (
       <div className='stamp-form group'>
         <h1>Post a Stamp</h1>
@@ -115,10 +153,12 @@ module.exports = React.createClass({
         </form>
         <Modal isOpen={this.state.showMap} onRequestClose={this.closeMap} style={customStyles}>
           <div className='map' ref='map'/>
-          <input className='map-search' type='text' onKeyUp={this.searchMap} valueLink={this.linkState("searchQuery")}/>
-          <ul className='map-search-results'>
-            {searchResults}
-          </ul>
+          <div className='map-search group'>
+            <input type='text' onChange={this.searchMap}/>
+            <ul className='map-search-results'>
+              {searchResults}
+            </ul>
+          </div>
         </Modal>
       </div>
     );
