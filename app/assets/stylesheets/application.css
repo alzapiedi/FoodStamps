@@ -245,6 +245,10 @@
   cursor: pointer;
 }
 
+.stamp-form button:disabled {
+  opacity: 0.5;
+}
+
 .stamp-form a {
   margin-left: 74px;
   cursor: pointer;

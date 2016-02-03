@@ -35,7 +35,7 @@ var customStyles = {
 module.exports = React.createClass({
   mixins: [LinkedState],
   getInitialState: function () {
-    return {searchQuery: "", imageFile: null, imageUrl: "", showMap: false, places: []};
+    return {searchQuery: "", imageFile: null, imageUrl: "", showMap: false, places: [], disabled: false};
   },
   componentDidMount: function () {
 
@@ -79,7 +79,7 @@ module.exports = React.createClass({
   },
   handleSubmit: function (e) {
     e.preventDefault();
-
+    this.setState({disabled: true});
     var formData = new FormData();
     var loc = this.state.taggedLocation;
     formData.append("stamp[body]", this.state.body);
@@ -90,7 +90,11 @@ module.exports = React.createClass({
     }
     ApiUtil.createStamp(formData, function () {
       this.props.history.pushState(null, '#/');
+      this.enableButton();
     }.bind(this));
+  },
+  enableButton: function () {
+    this.setState({disabled: false});
   },
   changeFile: function (e) {
     var reader = new FileReader();
@@ -140,7 +144,6 @@ module.exports = React.createClass({
     }.bind(this);
   },
   render: function () {
-    console.log(this.state.taggedLocation);
     var imgBox;
     var tagLoc = this.state.taggedLocation ? this.state.taggedLocation.name : "Tag a location (optional)";
     if (this.state.imageUrl === "") {
@@ -160,7 +163,7 @@ module.exports = React.createClass({
           {imgBox}
           <input placeholder={'Description'} valueLink={this.linkState("body")}/>
           <a onClick={this.openMap}>{tagLoc}</a>
-          <button>Post Stamp</button>
+          <button disabled={this.state.disabled}>Post Stamp</button>
         </form>
         <Modal isOpen={this.state.showMap} onRequestClose={this.closeMap} style={customStyles}>
           <div className='map' ref='map'/>
