@@ -43,12 +43,17 @@ module.exports = React.createClass({
   openMap: function () {
     this.setState({showMap: true}, function () {
       var mapDOMNode = this.refs.map;
+      var loc = this.state.taggedLocation;
+      var center = loc ? {lat: loc.geometry.location.lat(), lng: loc.geometry.location.lng()} : {lat: 40.725136, lng: -73.996900};
         var mapOptions = {
-          center: {lat: 40.725136, lng: -73.996900},
+          center: center,
           zoom: 13,
         };
       this.map = new google.maps.Map(mapDOMNode, mapOptions);
       this.markers = [];
+      if (loc) {
+        this.createMarker(loc);
+      }
     }.bind(this));
 
   },
@@ -59,14 +64,16 @@ module.exports = React.createClass({
   searchMap: function (e) {
     e.preventDefault();
     this.clearMarkers();
+    this.setState({places: []});
     var request = {
-      query: e.target.value,
+      query: e.target.children[0].value,
       bounds: this.map.getBounds()
     };
     var service = new google.maps.places.PlacesService(this.map);
     service.textSearch(request, function(results, status) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         this.setState({places: results});
+        this.map.panTo(results[0].geometry.location);
       }
     }.bind(this));
   },
@@ -74,10 +81,13 @@ module.exports = React.createClass({
     e.preventDefault();
 
     var formData = new FormData();
-
+    var loc = this.state.taggedLocation;
     formData.append("stamp[body]", this.state.body);
     formData.append("stamp[image]", this.state.imageFile);
-
+    if (loc) {
+      formData.append("stamp[location_id]", loc.id);
+      formData.append("stamp[location_name]", loc.name);
+    }
     ApiUtil.createStamp(formData, function () {
       this.props.history.pushState(null, '#/');
     }.bind(this));
@@ -126,12 +136,13 @@ module.exports = React.createClass({
   },
   tagLocation: function (place) {
     return function () {
-      this.setState({taggedLocation: place, showMap: false});
-    }.bind(this)
+      this.setState({taggedLocation: place, showMap: false, places: []});
+    }.bind(this);
   },
   render: function () {
     console.log(this.state.taggedLocation);
     var imgBox;
+    var tagLoc = this.state.taggedLocation ? this.state.taggedLocation.name : "Tag a location (optional)";
     if (this.state.imageUrl === "") {
       imgBox = <div></div>;
     } else {
@@ -147,14 +158,17 @@ module.exports = React.createClass({
         <form onSubmit={this.handleSubmit}>
           <input type='file' onChange={this.changeFile}/>
           {imgBox}
-          <textarea placeholder={'Description'} valueLink={this.linkState("body")}/>
-          <a onClick={this.openMap}>Tag a location (optional)</a>
+          <input placeholder={'Description'} valueLink={this.linkState("body")}/>
+          <a onClick={this.openMap}>{tagLoc}</a>
           <button>Post Stamp</button>
         </form>
         <Modal isOpen={this.state.showMap} onRequestClose={this.closeMap} style={customStyles}>
           <div className='map' ref='map'/>
           <div className='map-search group'>
-            <input type='text' onChange={this.searchMap}/>
+            <form onSubmit={this.searchMap}>
+              <input type='text' placeholder='Search for a location...'/>
+              <button>Search</button>
+            </form>
             <ul className='map-search-results'>
               {searchResults}
             </ul>

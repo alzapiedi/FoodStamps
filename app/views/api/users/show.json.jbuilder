@@ -20,6 +20,6 @@ json.stamps(@stamps) do |stamp|
   json.likes stamp.likes.count
   json.thumb_avatar asset_path(stamp.user.avatar.url(:thumb))
   json.username stamp.user.username
-  json.extract!(stamp, :id, :body, :user_id, :created_at)
+  json.extract!(stamp, :id, :body, :user_id, :created_at, :location_id, :location_name)
   json.image_url stamp.image.url
 end

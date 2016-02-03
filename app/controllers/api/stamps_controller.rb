@@ -17,6 +17,6 @@ class Api::StampsController < ApplicationController
 
   private
   def stamp_params
-    params.require(:stamp).permit(:body, :image)
+    params.require(:stamp).permit(:body, :image, :location_id, :location_name)
   end
 end
