@@ -25,7 +25,7 @@ module.exports = React.createClass({
       links = (
         <div className='stamp-head-links'>
           <a className='stamp-user' href={'#/users/' + stamp.user_id}>{stamp.username}</a>
-          <a className='stamp-location' href='#'>{locName}</a>
+          <a className='stamp-location' href={'#/locations/' + locId}>{locName}</a>
         </div>
       );
     } else {

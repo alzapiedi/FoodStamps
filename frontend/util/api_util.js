@@ -127,5 +127,17 @@ module.exports = {
         callback && callback();
       }
     });
+  },
+  stampsByLocation: function (locationId, callback) {
+    $.ajax({
+      type: "GET",
+      url: "api/locations/" + locationId,
+      dataType: "json",
+      success: function (stamps) {
+        StampActions.updateFeed(stamps);
+        callback && callback();
+      }
+    });
+
   }
 };

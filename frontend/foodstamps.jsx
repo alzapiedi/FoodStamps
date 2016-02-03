@@ -13,7 +13,8 @@ var React = require('react'),
     Header = require('./components/header'),
     StampActions = require('./actions/stamp'),
     ApiUtil = require('./util/api_util'),
-    Modal = require('react-modal');
+    Modal = require('react-modal'),
+    StampLocation = require('./components/stamp_location');
 
 var App = React.createClass({
   componentDidMount: function () {
@@ -44,6 +45,7 @@ var routes = (
       <Route path='users/:id' component={UserShow} onEnter={_ensureLoggedIn}/>
       <Route path='new' component={StampForm} onEnter={_ensureLoggedIn}/>
       <Route path='search/:query' component={Feed} onEnter={performSearch}/>
+      <Route path='locations/:id' component={StampLocation} onEnter={locationFeed}/>
     </Route>
   </Router>
 );
@@ -64,6 +66,10 @@ function _ensureLoggedIn(nextState, replace, callback) {
 
 function performSearch(nextState, replace, callback) {
   ApiUtil.search(nextState.params.query);
+}
+
+function locationFeed(nextState, replace, callback) {
+  ApiUtil.stampsByLocation(nextState.params.id, callback);
 }
 
 

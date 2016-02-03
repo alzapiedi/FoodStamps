@@ -85,7 +85,7 @@ module.exports = React.createClass({
     formData.append("stamp[body]", this.state.body);
     formData.append("stamp[image]", this.state.imageFile);
     if (loc) {
-      formData.append("stamp[location_id]", loc.id);
+      formData.append("stamp[location_id]", loc.place_id);
       formData.append("stamp[location_name]", loc.name);
     }
     ApiUtil.createStamp(formData, function () {
