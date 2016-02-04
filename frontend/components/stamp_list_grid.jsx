@@ -52,7 +52,16 @@ module.exports = React.createClass({
   },
   render: function () {
     var grid = this.props.stamps.map(function (stamp) {
-      return <img key={stamp.id} onClick={this.openModal(stamp)} className='stamp-grid-size' src={stamp.small_image_url}/>;
+      return (
+        <div key={stamp.id} className='stamp-grid-container' onClick={this.openModal(stamp)}>
+          <div className='stamp-grid-info'>
+            <div className='stamp-grid-stats'>
+              <i className="fa fa-heart"></i>{stamp.likes}<i className="fa fa-comment"></i>{stamp.comments.length}
+            </div>
+          </div>
+          <img className='stamp-grid-size' src={stamp.small_image_url}/>
+        </div>
+        );
     }.bind(this));
     var modal = "";
     var thumb = "";

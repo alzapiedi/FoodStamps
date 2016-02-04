@@ -275,6 +275,7 @@
   margin: 60px 0;
   font-size: 14px;
   border: 1px solid #eee;
+  position: relative;
 }
 
 .stamp-head {
@@ -686,7 +687,6 @@ button:disabled:hover {
   height: 280px;
   margin-right: 20px;
   margin-bottom: 20px;
-  float: left;
   cursor: pointer;
 }
 
@@ -758,6 +758,13 @@ button:disabled:hover {
   cursor: pointer;
 }
 
+.stamp-location-modal {
+  display: block;
+  color: #4090db;
+  font-family: Helvetica;
+  font-weight: 400;
+}
+
 .modal-stats {
   padding: 20px 0;
 }
@@ -795,7 +802,6 @@ button:disabled:hover {
   font-family: Helvetica;
 }
 
-
 .view-controls-location {
   color: #4b4f54;
   width: 104px;
@@ -809,4 +815,58 @@ button:disabled:hover {
 .view-controls-location i {
   margin-right: 20px;
   cursor: pointer;
+}
+
+.stamp-grid-info {
+  width: 280px;
+  height: 280px;
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  display: none;
+  color: white;
+  font-size: 15px;
+  font-family: Helvetica;
+  vertical-align: middle;
+}
+
+.stamp-grid-container {
+  float: left;
+}
+
+.stamp-grid-container:hover .stamp-grid-info {
+  display: block;
+  cursor: pointer;
+}
+
+.stamp-grid-stats {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-55%) translateY(-50%);
+}
+
+.stamp-grid-stats i {
+  margin-left: 20px;
+  margin-right: 5px;
+}
+
+.stamp-image:after {
+  content: "♥";
+  color: white;
+  display: block;
+  font-size: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 999;
+  transition: font 0.25s;
+}
+
+.animate:after {
+  font-size: 80px;
+}
+
+.stamp-image {
+  position: relative;
 }

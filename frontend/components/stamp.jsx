@@ -1,10 +1,27 @@
 var React = require('react'),
     CommentsIndex = require('./comments_index'),
     CommentForm = require('./comment_form'),
+    ApiUtil = require('../util/api_util'),
     LikeToggle = require('./like_toggle');
 
 module.exports = React.createClass({
-
+  toggleLike: function () {
+    if (this.props.stamp.liked) {
+      ApiUtil.destroyLike(this.props.stamp.id);
+    } else {
+      ApiUtil.createLike(this.props.stamp.id);
+    }
+  },
+  doubleClick: function () {
+    var stamp = this.props.stamp;
+    if (!stamp.liked) {
+      this.toggleLike();
+      $('.stamp-image-' + stamp.id).addClass('animate');
+      setTimeout(function () {
+        $('.stamp-image-' + stamp.id).removeClass('animate');
+      }, 500);
+    }
+  },
   render: function () {
     var stamp = this.props.stamp;
     var locName = stamp.location_name;
@@ -44,7 +61,9 @@ module.exports = React.createClass({
           {links}
           <div className='stamp-age'>{age}</div>
         </section>
-        <img src={stamp.feed_image_url}/>
+        <div className={'stamp-image stamp-image-' + stamp.id}>
+          <img src={stamp.feed_image_url} onDoubleClick={this.doubleClick}/>
+        </div>
         <section className='stamp-body'>
           <span className='likes'>
             {stamp.likes + likes}
