@@ -11,7 +11,7 @@ class Stamp < ActiveRecord::Base
     :tags => [:tag_name],
     :user => [:username]
   }
-  has_attached_file :image, styles: { feed: "600x", modal: "500x500#", small: "280x280" }
+  has_attached_file :image, styles: { feed: "600x", modal: "500x500#", small: "280x280#" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   def new_comment
