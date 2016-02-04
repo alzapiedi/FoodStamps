@@ -1,11 +1,12 @@
 var React = require('react'),
     Feed = require('./feed'),
     StampStore = require('../stores/stamp'),
-    StampList = require('./stamp_list');
+    StampList = require('./stamp_list'),
+    StampListGrid = require('./stamp_list_grid');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return { place: "", stamps: StampStore.all() };
+    return { place: "", stamps: StampStore.all(), view: "list" };
   },
   componentDidMount: function () {
     this.stampListener = StampStore.addListener(this.updateState);
@@ -35,12 +36,26 @@ module.exports = React.createClass({
   updateState: function () {
     this.setState({stamps: StampStore.all()});
   },
+  setView: function (view) {
+    return function () {
+      this.setState({view: view});
+    }.bind(this);
+  },
   render: function () {
+    if (this.state.view === "list") {
+      stampView = <StampList stamps={this.state.stamps}/>;
+    } else {
+      stampView = <StampListGrid stamps={this.state.stamps}/>;
+    }
     return (
       <div className='location-show'>
         <div className='map-wide' ref='map'/>
         <h1 className='location-title'>{this.state.place}</h1>
-        <StampList stamps={this.state.stamps}/>
+        <div className='view-controls-location'>
+          <i onClick={this.setView("list")} className="fa fa-align-justify fa-2x"></i>
+          <i onClick={this.setView("grid")} className="fa fa-th fa-2x"></i>
+        </div>
+        {stampView}
       </div>
     );
   }

@@ -21,5 +21,7 @@ json.stamps(@stamps) do |stamp|
   json.thumb_avatar asset_path(stamp.user.avatar.url(:thumb))
   json.username stamp.user.username
   json.extract!(stamp, :id, :body, :user_id, :created_at, :location_id, :location_name)
-  json.image_url stamp.image.url
+  json.feed_image_url asset_path(stamp.image.url(:feed))
+  json.modal_image_url asset_path(stamp.image.url(:modal))
+  json.small_image_url asset_path(stamp.image.url(:small))
 end

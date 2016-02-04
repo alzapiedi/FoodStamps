@@ -44,7 +44,7 @@ module.exports = React.createClass({
           {links}
           <div className='stamp-age'>{age}</div>
         </section>
-        <img src={stamp.image_url}/>
+        <img src={stamp.feed_image_url}/>
         <section className='stamp-body'>
           <span className='likes'>
             {stamp.likes + likes}

@@ -294,6 +294,11 @@
 .stamp-user {
   margin-left: 10px;
   display: block;
+  color: #125688;
+}
+
+.stamp-user:hover {
+  color: #125688;
 }
 
 .stamp-location {
@@ -445,6 +450,19 @@
 }
 
 .thumb img {
+  height: 100%;
+}
+
+.thumb-2 {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #cccfd0;
+  overflow: hidden;
+  float:left;
+}
+
+.thumb-2 img {
   height: 100%;
 }
 
@@ -654,4 +672,141 @@ button:disabled {
 
 button:disabled:hover {
   cursor: default;
+}
+
+.stamp-grid {
+  width: 900px;
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.stamp-grid-size {
+  width: 280px;
+  height: 280px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  float: left;
+  cursor: pointer;
+}
+
+.stamp-modal-size {
+  width: 500px;
+  height: 500px;
+  float: left;
+}
+
+.view-controls-user {
+  color: #4b4f54;
+  width: 104px;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-40px);
+
+}
+
+.view-controls-user i {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.modal-right {
+  float: left;
+  width: 287px;
+}
+
+.modal-right {
+  padding: 0 24px;
+}
+
+.modal-header {
+  display: block;
+  position: relative;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-head-links {
+  float: left;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 55px;
+  transform: translateY(-50%);
+}
+
+.stamp-age-modal {
+  float: right;
+  font-family: Helvetica;
+  font-size: 15px;
+  color: #a5a7aa;
+}
+
+.stamp-likes-modal {
+  float: left;
+  color: #4b4f54;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: Helvetica;
+}
+
+.stamp-user-modal {
+  color: #125688;
+  font-family: 'Montserrat';
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.modal-stats {
+  padding: 20px 0;
+}
+
+.modal-comments {
+  height: 280px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-comments .comments {
+  border: 0;
+}
+
+.modal-comments p {
+  font-family: Helvetica;
+  font-size: 15px;
+}
+
+.modal-comments a {
+  font-family: 'Montserrat';
+  color: #125688;
+  font-size: 14px;
+  padding-right: 10px;
+}
+.modal-comments article {
+  margin-top: 0;
+}
+
+.modal-inputs .comment-form {
+  width: 220px;
+}
+
+.modal-inputs input {
+  width: 200px;
+  font-family: Helvetica;
+}
+
+
+.view-controls-location {
+  color: #4b4f54;
+  width: 104px;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+
+}
+
+.view-controls-location i {
+  margin-right: 20px;
+  cursor: pointer;
 }
