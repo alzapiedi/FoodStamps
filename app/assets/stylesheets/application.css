@@ -804,7 +804,7 @@ button:disabled:hover {
 
 .view-controls-location {
   color: #4b4f54;
-  width: 104px;
+  width: 84px;
   margin: auto;
   position: absolute;
   left: 50%;
@@ -813,8 +813,11 @@ button:disabled:hover {
 }
 
 .view-controls-location i {
-  margin-right: 20px;
   cursor: pointer;
+}
+
+.view-controls-location .fa-align-justify {
+  margin-right: 20px;
 }
 
 .stamp-grid-info {
@@ -860,7 +863,7 @@ button:disabled:hover {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   z-index: 999;
-  transition: font 0.25s;
+  transition: font .25s;
 }
 
 .animate:after {
