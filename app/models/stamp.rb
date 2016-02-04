@@ -6,11 +6,13 @@ class Stamp < ActiveRecord::Base
   has_many :likes
   has_many :tags, through: :comments, source: :tags
   has_many :mentions, through: :comments, source: :mentions
-  pg_search_scope :stamp_search, :associated_against => {
-    :comments => [:body],
-    :tags => [:tag_name],
-    :user => [:username]
-  }
+  pg_search_scope :stamp_search,
+    :against => :location_name,
+    :associated_against => {
+      :comments => [:body],
+      :tags => [:tag_name],
+      :user => [:username]
+    }
   has_attached_file :image, styles: { feed: "600x", modal: "500x500#", small: "280x280#" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 

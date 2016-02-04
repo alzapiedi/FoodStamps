@@ -5,6 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+locations = [
+  ["App Academy NYC", "ChIJ9SJkp49ZwokRDu04SSfFnLk"],
+  ["Hoboken", "ChIJ0TMVjWBXwokRh783EWrKtkQ"],
+  ["Las Vegas", "ChIJ0X31pIK3voARo3mz1ebVzDo"],
+  ["Chicago", "ChIJ7cv00DwsDogRAMDACa2m4K8"],
+  ["Miami", "ChIJEcHIDqKw2YgRZU-t3XHylv8"],
+  ["San Francisco", "ChIJIQBpAG2ahYAR_6128GcTUEo"],
+  ["San Diego", "ChIJSx6SrQ9T2YARed8V_f0hOg0"],
+  ["Paris", "ChIJD7fiBh9u5kcRYJSMaMOCCwQ"],
+  ["Amsterdam", "ChIJVXealLU_xkcRja_At0z9AGY"],
+  ["Montreal", "ChIJDbdkHFQayUwR7-8fITgxTmU"]]
+
 
 User.destroy_all
 u1 = User.create(username: "nick", password: "password", avatar: File.open("app/assets/images/nick-alzapiedi.jpg"))
