@@ -2,7 +2,8 @@ var React = require('react'),
     StampLocation = require('./stamp_location'),
     LinkedState = require('react-addons-linked-state-mixin'),
     ApiUtil = require('../util/api_util'),
-    Modal = require('react-modal');
+    Modal = require('react-modal'),
+    Dropzone = require('react-dropzone');
 
 
 var customStyles = {
@@ -35,7 +36,7 @@ var customStyles = {
 module.exports = React.createClass({
   mixins: [LinkedState],
   getInitialState: function () {
-    return {locName: "", imageFile: null, imageUrl: "", showMap: false, disabled: true};
+    return {locName: "", body: "", imageFile: null, imageUrl: "", showMap: false, disabled: true};
   },
   openMap: function () {
     this.setState({showMap: true}, function () {
@@ -86,17 +87,20 @@ module.exports = React.createClass({
     }
     ApiUtil.createStamp(formData, function () {
       this.props.history.pushState(null, '#/');
-      this.enableButton();
     }.bind(this));
   },
-  enableButton: function () {
-    this.setState({disabled: false});
-  },
-  changeFile: function (e) {
+  drop: function (files) {
     var reader = new FileReader();
-    var file = e.currentTarget.files[0];
+    var file = files[0];
     reader.onloadend = function () {
-      this.setState({imageFile: file, imageUrl: reader.result, disabled: false});
+      this.setState({imageFile: file, imageUrl: reader.result, disabled: false}, function () {
+        var image = $('.preview-image');
+        if (image.height() > image.width()) {
+          image.addClass('portrait');
+        } else {
+          image.addClass('landscape');
+        }
+      });
     }.bind(this);
 
     if (file) {
@@ -112,14 +116,17 @@ module.exports = React.createClass({
     if (this.state.imageUrl === "") {
       imgBox = <div></div>;
     } else {
-      imgBox = <img className='preview-image' width={350} src={this.state.imageUrl}></img>;
+      imgBox = <img className='preview-image' src={this.state.imageUrl}></img>;
     }
+    var style = { width: "350px", height: "275px", border: "2px dashed #ccc", margin: "auto", position: "relative", overflow: "hidden"};
     return (
       <div className='stamp-form group'>
         <h1>Post a Stamp</h1>
         <form onSubmit={this.handleSubmit}>
-          <input type='file' onChange={this.changeFile}/>
-          {imgBox}
+          <Dropzone onDrop={this.drop} multiple={false} style={style} activeStyle={{cursor: "pointer"}}>
+            {imgBox}
+            <p>Drag a file or click here</p>
+          </Dropzone>
           <input placeholder={'Description'} valueLink={this.linkState("body")}/>
           <a onClick={this.openMap}>{tagLoc}</a>
           <button disabled={this.state.disabled}>Post Stamp</button>

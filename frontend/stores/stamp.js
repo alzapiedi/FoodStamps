@@ -19,6 +19,21 @@ StampStore.find = function (stamp_id) {
   return -1;
 };
 
+StampStore.deleteComment = function (comment) {
+  var stampIdx, commentIdx;
+  for (var i = 0; i < _stamps.length; i++) {
+    if (_stamps[i].id === comment.stamp_id) {
+      for (var j = 0; j < _stamps[i].comments.length; j++) {
+        if (_stamps[i].comments[j].id === comment.id) {
+          stampIdx = i;
+          commentIdx = j;
+        }
+      }
+      _stamps[stampIdx].comments.splice(commentIdx, 1);
+    }
+  }
+};
+
 StampStore.hasBeenFetched = function () {
   return _hasBeenFetched;
 };
@@ -51,6 +66,12 @@ StampStore.__onDispatch = function (payload) {
   } else if (payload.actionType === StampConstants.RESET) {
     _stamps = [];
     _hasBeenFetched = false;
+    StampStore.__emitChange();
+  } else if (payload.actionType === StampConstants.TODD_AND_LILY) {
+    _stamps = _stamps.concat(payload.stamps);
+    StampStore.__emitChange();
+  } else if (payload.actionType === StampConstants.DELETE_COMMENT) {
+    StampStore.deleteComment(payload.comment);
     StampStore.__emitChange();
   }
 };

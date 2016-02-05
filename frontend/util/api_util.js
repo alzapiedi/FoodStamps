@@ -139,6 +139,28 @@ module.exports = {
         callback && callback();
       }
     });
-
+  },
+  addFeedStamps: function (page, callback) {
+    $.ajax({
+      type: "GET",
+      url: "api/feed",
+      dataType: "json",
+      data: { page: page },
+      success: function (stamps) {
+        StampActions.addStamps(stamps);
+        callback && callback();
+      }
+    });
+  },
+  deleteComment: function (comment, callback) {
+    $.ajax({
+      type: "DELETE",
+      url: "api/comments/" + comment.id,
+      dataType: "json",
+      success: function () {
+        StampActions.deleteComment(comment);
+        callback && callback();
+      }
+    });
   }
 };

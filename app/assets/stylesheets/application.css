@@ -34,8 +34,6 @@
 
  img {
    display: block;
-   width: 100%;
-   height: auto;
  }
 
  ul {
@@ -203,11 +201,21 @@
   border: 1px solid #eee;
 }
 
+.stamp-form p {
+  position: absolute;
+  text-align: center;
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
 .stamp-form h1 {
   font-size: 28px;
   color: #125688;
   text-align: center;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .stamp-form input, textarea {
@@ -219,10 +227,18 @@
   border: 1px solid #eee;
 }
 
-.stamp-form img {
-  width: 350px;
+.preview-image {
+  position: relative;
   display: block;
-  margin: auto;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.portrait {
+    width: 100%;
+}
+.landscape {
+    height: 100%;
 }
 
 .stamp-form textarea {
@@ -349,7 +365,7 @@
   /*padding-left: 180px;*/
   font-family: Helvetica;
   display: block;
-  width: 600px;
+  width: 800px;
   color: #4b4f54;
   margin: 50px auto 20px auto;
 }
@@ -357,7 +373,7 @@
 .profile-picture {
   width: 150px;
   height: 150px;
-  margin-right: 30px;
+  margin-right: 100px;
   border-radius: 50%;
   border: 1px solid #cccfd0;
   overflow: hidden;
@@ -490,6 +506,16 @@
 
 .comment-form input {
   width: 400px;
+}
+
+.delete-comment-button {
+  float: right;
+  color: #a5a7aa;
+  cursor: pointer;
+}
+
+.delete-comment-button:hover {
+  color: #34373b;
 }
 
 .likes {
@@ -823,7 +849,7 @@ button:disabled:hover {
 .stamp-grid-info {
   width: 280px;
   height: 280px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.4);
   position: absolute;
   display: none;
   color: white;
@@ -872,4 +898,31 @@ button:disabled:hover {
 
 .stamp-image {
   position: relative;
+}
+
+.load-more-button {
+  display: block;
+  vertical-align: middle;
+  color: #4090db;
+  height: 120px;
+  width: 120px;
+  border: 2px solid #4090db;
+  border-radius: 50%;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.load-more-button:hover {
+  color: #125688;
+  border: 2px solid #125688;
+}
+.load-more-button a {
+  position: relative;
+  font-family: Montserrat;
+  font-size: 11px;
+  top: 50px;
+  cursor: pointer;
 }

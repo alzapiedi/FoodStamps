@@ -26,5 +26,17 @@ module.exports = {
       actionType: StampConstants.REMOVE_LIKE,
       stampId: stampId
     });
+  },
+  addStamps: function (stamps) {
+    AppDispatcher.dispatch({
+      actionType: StampConstants.TODD_AND_LILY,
+      stamps: stamps
+    });
+  },
+  deleteComment: function (comment) {
+    AppDispatcher.dispatch({
+      actionType: StampConstants.DELETE_COMMENT,
+      comment: comment
+    });
   }
 };

@@ -4,12 +4,16 @@ var SessionsApiUtil = require('../util/sessions_api_util');
 
 module.exports = React.createClass({
   mixins: [History],
-
+  getInitialState: function () {
+    return {error: ""};
+  },
   submit: function (e) {
     e.preventDefault();
     var credentials = $(e.currentTarget).serializeJSON();
     SessionsApiUtil.login(credentials, function () {
       this.history.pushState({}, "/");
+    }.bind(this), function (error) {
+      this.setState({error: error});
     }.bind(this));
   },
 
@@ -33,7 +37,7 @@ module.exports = React.createClass({
           <button>Log In</button>
         </form>
         <div className='errors'>
-
+          {this.state.error}
         </div>
         <div className='form-message'>
           <a onClick={this.guestLogin}>Log in as guest</a> or <a href='/auth/facebook'>log in with Facebook.</a><br/>

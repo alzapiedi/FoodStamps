@@ -12,7 +12,16 @@ class Api::CommentsController < ApplicationController
       id: comment.id,
       user_id: comment.user_id,
       username: username,
+      stamp_id: comment.stamp_id,
       mentions: mentions
     }
+  end
+
+  def destroy
+    comment = Comment.find(params[:id])
+    if comment.user_id == current_user.id
+      comment.destroy
+    end
+    render json: {}
   end
 end

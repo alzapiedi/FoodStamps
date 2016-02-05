@@ -9,9 +9,10 @@ var React = require('react'),
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return {user: UserStore.find(this.props.params.id), feed: [], view: "list"};
+    return {user: UserStore.find(this.props.params.id), feed: [], view: "grid"};
   },
   componentDidMount: function () {
+    window.scrollTo(0, 0);
     this.userListener = UserStore.addListener(this.updateState);
     this.feedListener = StampStore.addListener(this.updateState);
     ApiUtil.fetchUser(this.props.params.id);
@@ -22,6 +23,7 @@ module.exports = React.createClass({
   },
   componentWillReceiveProps: function (newProps) {
     StampStore.reset();
+    window.scrollTo(0, 0);
     ApiUtil.fetchUser(newProps.params.id, function () {
       this.setState({user: UserStore.find(newProps.params.id), feed: StampStore.all()});
     }.bind(this));

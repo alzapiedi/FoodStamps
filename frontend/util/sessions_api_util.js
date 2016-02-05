@@ -1,6 +1,6 @@
 var CurrentUserActions = require("../actions/current_user");
 module.exports = {
-  login: function (credentials, success) {
+  login: function (credentials, success, error) {
     $.ajax({
       url: '/api/session',
       type: 'POST',
@@ -9,6 +9,9 @@ module.exports = {
       success: function (currentUser) {
         CurrentUserActions.receiveCurrentUser(currentUser);
         success && success();
+      },
+      error: function (response) {
+        error && error(response.responseJSON[0]);
       }
 
     });

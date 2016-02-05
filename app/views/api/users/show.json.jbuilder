@@ -9,6 +9,7 @@ json.stamps(@stamps) do |stamp|
   json.comments(stamp.comments.includes(:user)) do |comment|
     json.id comment.id
     json.body comment.body
+    json.stamp_id comment.stamp_id
     json.username comment.user.username
     json.user_id comment.user.id
     json.mentions(stamp.mentions) do |mention|
