@@ -9,6 +9,7 @@ module.exports = React.createClass({
     return { place: "", stamps: StampStore.all(), view: "list" };
   },
   componentDidMount: function () {
+    window.scrollTo(0, 0);
     this.stampListener = StampStore.addListener(this.updateState);
     var mapDOMNode = this.refs.map;
       var mapOptions = {
