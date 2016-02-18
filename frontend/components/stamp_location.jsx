@@ -52,7 +52,7 @@ module.exports = React.createClass({
       <div className='location-show'>
         <div className='map-wide' ref='map'/>
         <h1 className='location-title'>{this.state.place}</h1>
-        <div className='view-controls-location'>
+        <div className='view-controls-location group'>
           <i onClick={this.setView("list")} className="fa fa-align-justify fa-2x"></i>
           <i onClick={this.setView("grid")} className="fa fa-th fa-2x"></i>
         </div>

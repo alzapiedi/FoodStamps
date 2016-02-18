@@ -734,6 +734,7 @@ button:disabled:hover {
 
 .view-controls-user i {
   margin-right: 20px;
+  float: left;
   cursor: pointer;
 }
 
@@ -839,6 +840,7 @@ button:disabled:hover {
 }
 
 .view-controls-location i {
+  float: left;
   cursor: pointer;
 }
 

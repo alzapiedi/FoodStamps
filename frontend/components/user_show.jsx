@@ -49,7 +49,7 @@ module.exports = React.createClass({
       return (
         <div>
           <UserInfo user={user}/>
-          <div className='view-controls-user'>
+          <div className='view-controls-user group'>
             <i onClick={this.setView("list")} className="fa fa-align-justify fa-2x"></i>
             <i onClick={this.setView("grid")} className="fa fa-th fa-2x"></i>
           </div>
