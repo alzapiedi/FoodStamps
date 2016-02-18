@@ -35,12 +35,13 @@ module.exports = React.createClass({
           <input type='text' name='username' placeholder="Username"/>
           <input type='password' name='password' placeholder="Password"/>
           <button>Log In</button>
+          <button onClick={this.guestLogin}>Log in as Guest</button>
         </form>
         <div className='errors'>
           {this.state.error}
         </div>
         <div className='form-message'>
-          <a onClick={this.guestLogin}>Log in as guest</a> or <a href='/auth/facebook'>log in with Facebook.</a><br/>
+          <a href='/auth/facebook'>Log in with Facebook.</a><br/>
           Don't have an account? <a href='#/users/new'>Click here</a> to sign up.
         </div>
       </div>

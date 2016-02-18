@@ -1,4 +1,4 @@
-# FoodStamps
+# [FoodStamps](http://www.foodstamps.io)
 
 FoodStamps is a clone of the popular web application Instagram used to share photos of food, built using React.js and Ruby on Rails.  Users may create their own account, log in via Facebook, or demo the app by using one click guest login.
 
