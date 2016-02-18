@@ -724,7 +724,6 @@ button:disabled:hover {
 
 .view-controls-user {
   color: #4b4f54;
-  width: 104px;
   margin: auto;
   position: absolute;
   left: 50%;
@@ -831,7 +830,6 @@ button:disabled:hover {
 
 .view-controls-location {
   color: #4b4f54;
-  width: 84px;
   margin: auto;
   position: absolute;
   left: 50%;
