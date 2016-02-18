@@ -10,7 +10,7 @@ class Api::StampsController < ApplicationController
   end
 
   def search
-    @stamps = Stamp.stamp_search(params[:query]).order(:created_at)
+    @stamps = Stamp.order(created_at: :desc).stamp_search(params[:query])
     @current_user = current_user
     render 'api/feeds/show'
   end
