@@ -1,9 +1,13 @@
 # [FoodStamps](http://www.foodstamps.io)
 
-![FoodStamps1] (https://github.com/alzapiedi/foodstamps/blob/master/screens/fs1.png)
-![FoodStamps2] (https://github.com/alzapiedi/foodstamps/blob/master/screens/fs2.png)
 
 FoodStamps is a clone of the popular web application Instagram used to share photos of food, built using React.js and Ruby on Rails.  Users may create their own account, log in via Facebook, or demo the app by using one click guest login.
+
+## Feed View:
+![Feed View] (https://github.com/alzapiedi/foodstamps/blob/master/screens/fs2.png)
+
+## User View:
+![FoodStamps] (https://github.com/alzapiedi/foodstamps/blob/master/screens/fs3.png)
 
 Once logged in, users may post "stamps," which are photos that can optionally have a comment (with tags/mentions) and location attached. Users will also see their feed, which is a collection of stamps posted by users they follow.  To find users to follow, you may use the search feature to find stamps by username, body of any comment, location or tags. Visiting a users page will give the option to follow or unfollow them and display all of their stamps.  Each stamp may be liked or commented on.
 
